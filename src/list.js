@@ -1,68 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const List = (props) => {
-  const [list, setList] = useState([]);
-  const placesArray = props.places;
-  const institute = props.institute;
-  const type = props.type;
-
-  const filterArray = (arr) => {
-    const filteredArray = arr.filter((item) => {
-      return item.type === type;
-    });
-    setList(filteredArray);
-  };
-
-  const getAndRearray = () => {
-    if (institute === "어린이집") {
-      const arrayChild = placesArray.reduce((acc, obj) => {
-        const newObj = {
-          name: obj.KIDGARTN_NM,
-          type: obj.KIDGARTN_DIV_NM,
-          kids: obj.PSN_CAPA_CNT,
-          staff: obj.CHLDCARE_SCHLSTAF_CNT,
-          tel: obj.KIDGARTN_TELNO,
-          room: obj.CHLDCR_ROOM_CNT,
-          car: obj.ATNDSKL_VEHCLE_OPERT_YN,
-          cctv: obj.CCTV_INSTL_CNT,
-          playground: obj.PLAYGRND_CNT,
-          post: obj.REFINE_LOTNO_ADDR,
-          road: obj.REFINE_ROADNM_ADDR,
-          long: obj.REFINE_WGS84_LOGT,
-          lat: obj.REFINE_WGS84_LAT,
-        };
-        acc.push(newObj);
-        return acc;
-      }, []);
-      filterArray(arrayChild);
-    } else if (institute === "유치원") {
-      const arrayKinder = placesArray.reduce((acc, obj) => {
-        const newObj = {
-          name: obj.FACLT_NM,
-          type: obj.FOUND_DIV_NM,
-          tel: obj.TELNO,
-          homepage: obj.HMPG_ADDR,
-          post: obj.REFINE_LOTNO_ADDR,
-          road: obj.REFINE_ROADNM_ADDR,
-          long: obj.REFINE_WGS84_LOGT,
-          lat: obj.REFINE_WGS84_LAT,
-        };
-        acc.push(newObj);
-        return acc;
-      }, []);
-      filterArray(arrayKinder);
-    } else setList([]);
-  };
-
-  useEffect(() => {
-    getAndRearray();
-  }, [props]);
-
   return (
     <div>
-      <h1>No Results</h1>
-      {console.log(list)}
+      {console.log(props)}
+      <div>검색 결과</div>
+      {props.list.map((item) => {
+        return (
+          <div id={item.name}>
+            <h3>{item.name}</h3>
+            <div>☎: {item.tel}</div>
+            <div>🏠: {item.post}</div>
+            <div>{item.road ? "(" + item.road + ")" : ""}</div>
+            <div>
+              {item.hasOwnProperty("homepage") ? (
+                <a href={"/url/" + item.hompage}>🌐: {item.homepage}</a>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
+
 export default List;
