@@ -12,19 +12,29 @@ const Search = () => {
 
   async function requestPlaces() {
     if (institute === "어린이집") {
-      const loadedChildArray = await callApi();
+      const loadedChildArray = await callApiForChild();
       setPlaces(loadedChildArray || []);
-
-      console.log(loadedChildArray);
-    } else console.log("유치원");
+    } else if (institute === "유치원") {
+      const loadedKinderArray = await callApiForKinder();
+      setPlaces(loadedKinderArray || []);
+    } else setPlaces([]);
   }
 
-  const callApi = () => {
+  const callApiForChild = () => {
     return fetch(
       "https://openapi.gg.go.kr/ChildHouse?KEY=a20828a121fc4d459618a24b3c9c3c31&Type=json&pIndex=1&pSize=200&SIGUN_NM=구리시"
     )
       .then((response) => response.json())
       .then((json) => json.ChildHouse[1].row)
+      .catch((err) => console.log(err));
+  };
+
+  const callApiForKinder = () => {
+    return fetch(
+      "https://openapi.gg.go.kr/Kndrgrschoolstus?KEY=a20828a121fc4d459618a24b3c9c3c31&Type=json&pIndex=1&pSize=200&SIGUN_NM=구리시"
+    )
+      .then((response) => response.json())
+      .then((json) => json.Kndrgrschoolstus[1].row)
       .catch((err) => console.log(err));
   };
 
@@ -79,7 +89,7 @@ const Search = () => {
         </label>
         <button>찾기</button>
       </form>
-      <List places={places} />
+      <List institute={institute} type={type} places={places} />
     </div>
   );
 };
