@@ -2,19 +2,22 @@ import React from "react";
 
 const List = (props) => {
   return (
-    <div>
-      {console.log(props)}
-      <div>검색 결과</div>
+    <div className="result-container">
+      <div className="result-title">검색 결과</div>
       {props.list.map((item) => {
         return (
-          <div id={item.name}>
+          <div className="result-item-container" key={item.name}>
             <h3>{item.name}</h3>
-            <div>☎: {item.tel}</div>
-            <div>🏠: {item.post}</div>
-            <div>{item.road ? "(" + item.road + ")" : ""}</div>
-            <div>
+            <div key={item.tel}>☎: {item.tel}</div>
+            <div key={item.post}>🏠: {item.post}</div>
+            <div key={item.road}>{item.road ? "(" + item.road + ")" : ""}</div>
+            <div key={item.hompage}>
               {item.hasOwnProperty("homepage") ? (
-                <a href={"/url/" + item.hompage}>🌐: {item.homepage}</a>
+                <a href={item.hompage}>
+                  {" "}
+                  🌐: {item.homepage}
+                  {console.log(item.hompage)}
+                </a>
               ) : (
                 ""
               )}
