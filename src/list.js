@@ -13,11 +13,7 @@ const List = (props) => {
             <div key={item.road}>{item.road ? "(" + item.road + ")" : ""}</div>
             <div key={item.hompage}>
               {item.hasOwnProperty("homepage") ? (
-                <a href={item.hompage}>
-                  {" "}
-                  🌐: {item.homepage}
-                  {console.log(item.hompage)}
-                </a>
+                <a href={item.homepage}> 🌐: {item.homepage}</a>
               ) : (
                 ""
               )}

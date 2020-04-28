@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import Filter from "./Filter";
 
 const Search = () => {
@@ -91,6 +92,7 @@ const Search = () => {
 
         <button className="form-btn">찾기</button>
       </form>
+
       <Filter institute={institute} type={type} places={places} />
     </div>
   );

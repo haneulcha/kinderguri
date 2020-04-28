@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Map from "./Map";
 import List from "./List";
 
 const Filter = (props) => {
@@ -57,10 +58,11 @@ const Filter = (props) => {
 
   useEffect(() => {
     getAndRearray();
-  }, [props]);
+  }, [props]); //props.places ?
 
   return (
     <div>
+      <Map list={list} />
       <List list={list} />
     </div>
   );
