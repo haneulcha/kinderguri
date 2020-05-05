@@ -4,6 +4,7 @@ import List from "./List";
 
 const Filter = (props) => {
   const [list, setList] = useState([]);
+  const [mapMarking, setMapMarking] = useState();
   const placesArray = props.places;
   const institute = props.institute;
   const type = props.type;
@@ -58,12 +59,13 @@ const Filter = (props) => {
 
   useEffect(() => {
     getAndRearray();
+    setMapMarking();
   }, [props]); //props.places ?
 
   return (
     <div>
-      <Map list={list} />
-      <List list={list} />
+      <Map list={list} markerId={mapMarking} />
+      <List list={list} markingFn={setMapMarking} />
     </div>
   );
 };

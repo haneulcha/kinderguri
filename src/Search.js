@@ -92,7 +92,6 @@ const Search = () => {
 
         <button className="form-btn">찾기</button>
       </form>
-
       <Filter institute={institute} type={type} places={places} />
     </div>
   );
