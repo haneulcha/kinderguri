@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Map from "./Map";
-import List from "./List";
 
 const Filter = (props) => {
-  const [list, setList] = useState([]);
-  const [mapMarking, setMapMarking] = useState();
+  // const [list, setList] = useState([]);
+  // const [mapMarking, setMapMarking] = useState();
   const placesArray = props.places;
   const institute = props.institute;
   const type = props.type;
@@ -13,7 +11,7 @@ const Filter = (props) => {
     const filteredArray = arr.filter((item) => {
       return item.type === type;
     });
-    setList(filteredArray);
+    props.setList(filteredArray);
   };
 
   const getAndRearray = () => {
@@ -54,19 +52,14 @@ const Filter = (props) => {
         return acc;
       }, []);
       filterArray(arrayKinder);
-    } else setList([]);
+    } else props.setList([]);
   };
 
   useEffect(() => {
     getAndRearray();
-    setMapMarking();
-  }, [props]); //props.places ?
+    props.setMapMarking();
+  }, [props.places]); //props.places ?
 
-  return (
-    <div>
-      <Map list={list} markerId={mapMarking} />
-      <List list={list} markingFn={setMapMarking} />
-    </div>
-  );
+  return null;
 };
 export default Filter;

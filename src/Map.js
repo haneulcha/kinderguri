@@ -90,7 +90,7 @@ class Map extends React.Component {
   }
 
   render() {
-    return <div id="map"></div>;
+    return <div id="map" className="div4"></div>;
   }
 }
 

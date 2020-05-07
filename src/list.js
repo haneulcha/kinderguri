@@ -7,7 +7,7 @@ const List = (props) => {
   };
 
   return (
-    <div className="result-container">
+    <div className="div3">
       <div className="result-title">검색 결과</div>
       {props.list.map((item, index) => {
         return (

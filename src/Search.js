@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import Filter from "./Filter";
 
-const Search = () => {
+const Search = (props) => {
   const [institute, setInstitute] = useState("");
   const [options, setOptions] = useState([]);
   const [type, setType] = useState("");
@@ -50,7 +49,7 @@ const Search = () => {
   }, [institute]);
 
   return (
-    <div>
+    <div className="div2">
       <form
         className="form-container"
         onSubmit={(e) => {
@@ -92,7 +91,13 @@ const Search = () => {
 
         <button className="form-btn">찾기</button>
       </form>
-      <Filter institute={institute} type={type} places={places} />
+      <Filter
+        institute={institute}
+        type={type}
+        places={places}
+        setList={props.setList}
+        setMapMarking={props.setMapMarking}
+      />
     </div>
   );
 };
