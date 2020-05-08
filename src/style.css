@@ -101,7 +101,7 @@ h2.title {
   left: 0;
   width: 60vw;
   height: 25vh;
-  margin: 0;
+  margin: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,6 +137,7 @@ h2.title {
   background-color: #fda085;
   width: 60vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
