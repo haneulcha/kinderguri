@@ -16,7 +16,7 @@ class Map extends React.Component {
         let container = document.getElementById("map");
         let options = {
           center: new kakao.maps.LatLng(37.6027778, 127.1430889),
-          level: 7,
+          level: 6,
         };
         const map = new kakao.maps.Map(container, options);
 
@@ -26,7 +26,7 @@ class Map extends React.Component {
         if (markerId) {
           positions = [
             {
-              content: "<div>" + list[markerId].name + "</div>",
+              content: "<div class='onmap'>" + list[markerId].name + "</div>",
               latlng: new kakao.maps.LatLng(
                 list[markerId].lat,
                 list[markerId].long
@@ -36,7 +36,7 @@ class Map extends React.Component {
         } else {
           positions = list.map((item) => {
             const newObj = {
-              content: "<div>" + item.name + "</div>",
+              content: "<div class='onmap'>" + item.name + "</div>",
               latlng: new kakao.maps.LatLng(item.lat, item.long),
             };
             return newObj;

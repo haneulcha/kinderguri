@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FormControl, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+
 import Filter from "./Filter";
 import useDropdown from "./useDropdown";
 
@@ -52,7 +53,7 @@ const Search = (props) => {
   }, [institute]);
 
   return (
-    <div className="div2">
+    <div className="div2 container">
       <form
         className="form-container"
         onSubmit={(e) => {
@@ -62,7 +63,7 @@ const Search = (props) => {
       >
         <InstituteDropdown />
         <SetDropdown />
-        <Button type="submit" variant="contained" color="secondary">
+        <Button type="submit" variant="outlined" color="primary">
           찾기
         </Button>
       </form>

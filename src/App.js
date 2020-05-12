@@ -10,13 +10,16 @@ const App = () => {
 
   return (
     <div className="parent">
-      <div className="div1">
-        <h4>경기도 구리시 소재</h4>
-        <h2>유치원·어린이집 👶🧒👦</h2>
-      </div>
+      <div className="except-map">
+        <div className="div1 container">
+          <div className="header-text">
+            <h1>경기도 구리시 유치원·어린이집</h1>
+          </div>
+        </div>
 
-      <Search setList={setList} setMapMarking={setMapMarking} />
-      <List list={list} markingFn={setMapMarking} />
+        <Search setList={setList} setMapMarking={setMapMarking} />
+        <List list={list} markingFn={setMapMarking} />
+      </div>
       <Map list={list} markerId={mapMarking} />
     </div>
   );
