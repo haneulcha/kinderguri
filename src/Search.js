@@ -64,7 +64,7 @@ const Search = (props) => {
         <InstituteDropdown />
         <SetDropdown />
         <Button type="submit" variant="outlined" color="default">
-          찾기
+          찾 기
         </Button>
       </form>
       <Filter
