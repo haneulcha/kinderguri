@@ -1,3 +1,4 @@
+import env from "../.env";
 /*global kakao*/
 import React from "react";
 
@@ -5,7 +6,7 @@ class Map extends React.Component {
   componentDidUpdate() {
     const { list, markerId } = this.props;
     const script = document.createElement("script");
-    const MAP_KEY = "9d8e11dbf4d776645435dbf7bd758bc3";
+    const MAP_KEY = process.env.MAP_KEY;
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${MAP_KEY}&autoload=false`;
 
     document.head.appendChild(script);
