@@ -53,7 +53,7 @@ const Search = (props) => {
   }, [institute]);
 
   return (
-    <div className="div2 container">
+    <div className="search">
       <form
         className="form-container"
         onSubmit={(e) => {
@@ -63,7 +63,7 @@ const Search = (props) => {
       >
         <InstituteDropdown />
         <SetDropdown />
-        <Button type="submit" variant="outlined" color="primary">
+        <Button type="submit" variant="outlined" color="default">
           찾기
         </Button>
       </form>

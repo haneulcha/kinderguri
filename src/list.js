@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
+import DirectionsBusIcon from "@material-ui/icons/DirectionsBus";
 
 const List = (props) => {
   const sendingBack = (e) => {
@@ -8,7 +9,7 @@ const List = (props) => {
   };
 
   return (
-    <div className="div3 container">
+    <div className="list">
       <div
         className="result-title text"
         style={{
@@ -16,6 +17,8 @@ const List = (props) => {
           height: 40,
           marginTop: 10,
           fontWeight: "bold",
+          color: "#e9e7e7",
+          fontSize: "1.2em",
         }}
       >
         검색 결과
@@ -43,9 +46,9 @@ const List = (props) => {
                 )}
               </div>
               <div>
-                {item.kids ? "🧑👧 : " + item.kids : ""}{" "}
-                {item.staff ? "👩‍🏫👨‍🏫 : " + item.staff : ""}
-                {item.car && item.car === "Y" ? "🚍" : ""}
+                {item.car && item.car === "Y" ? "🚌 /" : ""}
+                {item.kids ? " 🧑👧 : " + item.kids + "명 /" : ""}
+                {item.staff ? " 👩‍🏫👨‍🏫 : " + item.staff + "명" : ""}
               </div>
             </div>
           </Paper>
