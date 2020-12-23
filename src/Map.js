@@ -1,8 +1,7 @@
-import env from "../.env";
 /*global kakao*/
 import React from "react";
-
 class Map extends React.Component {
+  
   componentDidUpdate() {
     const { list, markerId } = this.props;
     const script = document.createElement("script");
@@ -18,6 +17,9 @@ class Map extends React.Component {
         let options = {
           center: new kakao.maps.LatLng(37.6027778, 127.143088),
           level: 7,
+          draggable: true,
+          scrollwheel: true,
+          keyboardShortcuts: true,
         };
         const map = new kakao.maps.Map(container, options);
 
@@ -54,8 +56,7 @@ class Map extends React.Component {
           var infowindow = new kakao.maps.InfoWindow({
             content: positions[i].content,
           });
-
-          console.log(list, markerId);
+   
 
           if (positions.length > 1) {
             kakao.maps.event.addListener(

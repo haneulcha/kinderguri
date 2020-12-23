@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-
-import Filter from "./Filter";
+import Filter from "./filter";
 import useDropdown from "./useDropdown";
+import { callApiForChild, callApiForKinder } from './fetch'
 
 const Search = (props) => {
   const [institute, InstituteDropdown] = useDropdown("영/유아", "", [
@@ -25,22 +25,6 @@ const Search = (props) => {
       setPlaces(loadedKinderArray || []);
     } else setPlaces([]);
   }
-  const callApiForChild = () => {
-    return fetch(
-      "https://openapi.gg.go.kr/ChildHouse?KEY=a20828a121fc4d459618a24b3c9c3c31&Type=json&pIndex=1&pSize=200&SIGUN_NM=구리시"
-    )
-      .then((response) => response.json())
-      .then((json) => json.ChildHouse[1].row)
-      .catch((err) => console.log(err));
-  };
-  const callApiForKinder = () => {
-    return fetch(
-      "https://openapi.gg.go.kr/Kndrgrschoolstus?KEY=a20828a121fc4d459618a24b3c9c3c31&Type=json&pIndex=1&pSize=200&SIGUN_NM=구리시"
-    )
-      .then((response) => response.json())
-      .then((json) => json.Kndrgrschoolstus[1].row)
-      .catch((err) => console.log(err));
-  };
 
   useEffect(() => {
     if (institute === "어린이집") {
@@ -53,9 +37,8 @@ const Search = (props) => {
   }, [institute]);
 
   return (
-    <div className="search">
-      <form
-        className="form-container"
+    <section className="search">
+      <form        
         onSubmit={(e) => {
           e.preventDefault();
           requestPlaces();
@@ -63,8 +46,8 @@ const Search = (props) => {
       >
         <InstituteDropdown />
         <SetDropdown />
-        <Button type="submit" variant="outlined" color="default">
-          찾 기
+        <Button type="submit" variant="outlined" color="default" size="small">
+          찾기
         </Button>
       </form>
       <Filter
@@ -74,7 +57,7 @@ const Search = (props) => {
         setList={props.setList}
         setMapMarking={props.setMapMarking}
       />
-    </div>
+    </section>
   );
 };
 

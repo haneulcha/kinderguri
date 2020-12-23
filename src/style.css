@@ -1,120 +1,154 @@
 * {
   box-sizing: border-box;
 }
-
+#root {
+  width: 100%;
+}
 body {
   background-color: #f8f9fa;
   font-size: 16px;
   display: flex;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
-
+h1, h2, h3 {
+  margin: 0;
+}
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li a {
+  color: unset;
+  text-decoration: none;
+}
 .parent {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  width: 1100px;
+  position: relative;  
 }
 
-.header {
+header {
+  display: flex;
+  align-items: baseline;
+
+  width: 100%;
+  padding: .5rem .75rem;
+
   background-color: #bcaaa4;
-  background-image: url("./header-image.jpg");
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("./header.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center;  
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  color: black;
-  width: 70%;
-  height: 280px;
+  color: #F3F7F9; 
 }
-
-.header-text {
-  display: flex;
-  border: solid #1a1919 0.3rem;
-  background-color: #e9e7e7;
-  padding: 30px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.7em;
-  font-weight: bold;
-  color: #1a1919;
-  box-shadow: 12px 12px 2px 1px rgba(83, 83, 87, 0.233);
+header h1 {
+  font-size: 1.75rem;
 }
-
-.header-text > h1 {
-  margin: 0;
-  font-size: 1.2em;
+header h2 {
+  margin: 0 .5em;
+  font-size: .75rem;
 }
 
 .search {
-  background-color: #ecf0f1;
-  width: 30%;
-  height: 280px;
+  max-width: 26rem;
+  background-color:#FDFEFF;
+  border: 1px solid #018F47;
+  border-radius: 1rem;
+  position: absolute;
+  right: 0;
+  margin: .5rem;
+  z-index: 2;
+
+}
+.search form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
-  align-items: center;
-  border: 1px solid #ced6e0;
+  align-items: baseline;
+  margin: .5rem;
+  width: auto;
 }
 
-.form-container {
-  display: flex;
-  justify-content: space-around;
-  flex-flow: column nowrap;
-  height: 80%;
-  align-items: center;
+.makeStyles-formControla-1{
+  width: 7rem;
 }
 
 .list {
-  background-color: #bcaaa4;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  padding: 6px 23px;
+  /* background-color: #bcaaa4;   */
+  position: fixed;  
+  width: 100%;
+  height: auto;
+  
+  bottom: 0;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  z-index: 2;
+  
 }
-
-.result-container {
-  background-color: #ffe8cc;
-}
-
-.result-item-container {
-  margin: 10px 10px;
-  padding: 5px 8px;
-  font-size: 15px;
-  min-height: 150px;
-  background-color: #f5f5f5;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-.result-item-container h3 {
-  color: #3d3d3d;
-  min-width: 280px;
+.list h2 {
   text-align: center;
-  font-size: 1.2em;
+  color: #e9e7e7;
+  display: none;
+}
+.list .container {
+  display: flex;
+  padding: .5rem;
 }
 
-.result-item-container h3:hover {
+
+.list .card {
+  margin-right: .5rem; 
+  min-width: 16rem;
+  height: 9.5rem;  
+}
+.MuiPaper-root{
+  height: 100%;
+  padding: .5rem;
+}
+.list .title {
+  font-size: 1rem;
+  color: #3d3d3d;
+  margin-bottom: .5rem;
+  width: auto;
+}
+
+.list .title:hover {
   cursor: pointer;
 }
 
-.result-info {
-  font-size: 0.9em;
+.list .info {  
+  font-size: 0.8em;  
+}
+
+.list .info li, .list .info li a {
+  margin-bottom: .15rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-right: 5px;
+  align-items: center;
+  font-size: .75rem;
+}
+.list .info li:last-child{
+  margin: 0;
+}
+.list .feature {
+  display: flex;
+}
+.list .feature > * {
+  margin-right: .3rem;  
+}
+.list .feature div {
+  display: flex;
+  align-items: center;
+}
+
+.list .container svg {
+  margin-right: .25rem;
+  font-size: 1rem;
 }
 
 .map {
-  width: 30%;
-  height: 70vh;
+  height: 94vh;   
 }
 
 .onmap {
@@ -125,18 +159,33 @@ body {
   min-width: 250px;
 }
 
-.scroll-top-btn {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  cursor: pointer;
-  background-color: rgb(133, 132, 132, 0.3);
 
-  border-radius: 10px;
+
+@media (min-width: 768px){
+.search{
+  width: 25.5rem;
 }
-
-.map-scroll {
-  width: 30%;
-  height: 100vh;
-  top: 0;
+.list {
+  width: 26rem;
+  height: auto;
+  right: 0;
+  top: 9rem; 
+}
+.list .container {
+  display: inline-block;
+  width: 100%;
+  padding: 0;
+  height: 82vh;
+  overflow-y: scroll;
+}
+.list .container::-webkit-scrollbar{
+  display: none;
+}
+.list .card {
+  height: 8rem;
+  margin-bottom: .5rem;
+}
+.MuiPaper-root{
+  background-color: rgba( 255, 255, 255, .85 );
+}
 }

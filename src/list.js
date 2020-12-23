@@ -1,60 +1,54 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
-import DirectionsBusIcon from "@material-ui/icons/DirectionsBus";
+import { Call, Home, Language, ChildCare, AssignmentInd, DirectionsBus }from "@material-ui/icons";
 
-const List = (props) => {
+const List = ({list, markingFn}) => {
   const sendingBack = (e) => {
     const id = e.target.id;
-    props.markingFn(id);
+    markingFn(id);
   };
 
   return (
-    <div className="list">
-      <div
-        className="result-title text"
-        style={{
-          textAlign: "center",
-          height: 40,
-          marginTop: 10,
-          fontWeight: "bold",
-          color: "#e9e7e7",
-          fontSize: "1.2em",
-        }}
+    <section className="list">
+      <h2     
       >
         검색 결과
-      </div>
-
-      {props.list.map((item, index) => {
+      </h2>
+      <ul className="container">
+      {list.map((item, index) => {
         return (
-          <Paper className="result-item-container" key={index}>
-            <h3 className="result-title" onClick={sendingBack} id={index}>
-              {item.name}
-            </h3>
-            <div className="result-info">
-              <div key={item.tel}>☎: {item.tel}</div>
-              <div key={item.post}>🏠: {item.post}</div>
-              <div key={item.road}>
-                {item.road ? "(" + item.road + ")" : ""}
-              </div>
-              <div key={item.hompage}>
-                {item.hasOwnProperty("homepage") &&
-                item.homepage !== null &&
-                item.homepage !== "http://" ? (
-                  <a href={item.homepage}> 🌐: {item.homepage}</a>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div>
-                {item.car && item.car === "Y" ? "🚌 /" : ""}
-                {item.kids ? " 🧑👧 : " + item.kids + "명 /" : ""}
-                {item.staff ? " 👩‍🏫👨‍🏫 : " + item.staff + "명" : ""}
-              </div>
-            </div>
-          </Paper>
+          <li className="card" key={`institute-${index}`}>
+            <Paper key={index} elevation={2} variant="outlined">
+              <h3 className="title" onClick={sendingBack} id={index}>
+                {item.name}
+              </h3>
+              <ul className="info">
+                <li key={item.tel}><Call />{item.tel}</li>
+                <li key={item.post}><Home />{item.post}</li>
+                <li key={item.road}>
+                  {item.road ? "(" + item.road + ")" : ""}
+                </li>
+                <li key={item.hompage}>
+                  {item.hasOwnProperty("homepage") &&
+                  item.homepage !== null &&
+                  item.homepage !== "http://" ? (
+                    <a href={item.homepage}><Language />{item.homepage}</a>
+                  ) : (
+                    ""
+                  )}
+                </li>
+                <li className="feature">                
+                  {item.kids ? <div><ChildCare />{item.kids}명</div> : ""}
+                  {item.staff ? <div><AssignmentInd />{item.staff}명</div> : ""}
+                  {item.car && item.car === "Y" ? <div><DirectionsBus /></div> : ""}
+                </li>
+              </ul>
+            </Paper>
+          </li>
         );
       })}
-    </div>
+      </ul>
+    </section>
   );
 };
 

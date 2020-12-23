@@ -6,9 +6,10 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles({
-  formControl: {
-    midWidth: 100,
-    width: 150,
+  formControl: {    
+    width: '6rem',
+    marginRight: '.5rem',
+    color: 'white'
   },
 });
 
@@ -26,13 +27,15 @@ const useDropdown = (label, defaultState, options) => {
         id={id}
         value={state}
         onChange={(e) => updateState(e.target.value)}
-        onBlur={(e) => updateState(e.target.value)}
+        onBlur={(e) => updateState(e.target.value)}        
       >
+        
         {options.map((item) => (
           <MenuItem key={item} value={item}>
             {item}
           </MenuItem>
         ))}
+        
       </Select>
     </FormControl>
   );
