@@ -1,7 +1,9 @@
 /*global kakao*/
 import React from "react";
+import dotenv from "dotenv";
+dotenv.config();
+
 class Map extends React.Component {
-  
   componentDidUpdate() {
     const { list, markerId } = this.props;
     const script = document.createElement("script");
@@ -56,7 +58,6 @@ class Map extends React.Component {
           var infowindow = new kakao.maps.InfoWindow({
             content: positions[i].content,
           });
-   
 
           if (positions.length > 1) {
             kakao.maps.event.addListener(

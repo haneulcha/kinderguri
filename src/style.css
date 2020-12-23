@@ -12,20 +12,23 @@ body {
   margin: 0;
   padding: 0;
 }
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 0;
 }
-ul, li {
+ul,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-li a {
+a {
   color: unset;
   text-decoration: none;
 }
-.parent {
-  position: relative;  
+.content {
+  position: relative;
 }
 
 header {
@@ -33,59 +36,65 @@ header {
   align-items: baseline;
 
   width: 100%;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
 
   background-color: #bcaaa4;
-  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("./header.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("./header.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;  
+  background-position: center;
 
-  color: #F3F7F9; 
+  color: #f3f7f9;
 }
 header h1 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 header h2 {
-  margin: 0 .5em;
-  font-size: .75rem;
+  margin: 0 0.5em;
+  font-size: 0.75rem;
 }
 
 .search {
   max-width: 26rem;
-  background-color:#FDFEFF;
-  border: 1px solid #018F47;
+  background-color: #fdfeff;
+  border: 1px solid #018f47;
   border-radius: 1rem;
   position: absolute;
   right: 0;
-  margin: .5rem;
+  margin: 0.5rem;
   z-index: 2;
-
 }
 .search form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: baseline;
-  margin: .5rem;
+  margin: 0.5rem;
   width: auto;
 }
 
-.makeStyles-formControla-1{
+.makeStyles-formControla-1 {
   width: 7rem;
+}
+
+.contact {
+  position: absolute;
+  top: 8rem;
+  right: 0.5rem;
+  z-index: 2;
 }
 
 .list {
   /* background-color: #bcaaa4;   */
-  position: fixed;  
+  position: fixed;
   width: 100%;
   height: auto;
-  
+
   bottom: 0;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   z-index: 2;
-  
 }
 .list h2 {
   text-align: center;
@@ -94,23 +103,22 @@ header h2 {
 }
 .list .container {
   display: flex;
-  padding: .5rem;
+  padding: 0.5rem;
 }
-
 
 .list .card {
-  margin-right: .5rem; 
+  margin-right: 0.5rem;
   min-width: 16rem;
-  height: 9.5rem;  
+  height: 9.5rem;
 }
-.MuiPaper-root{
+.MuiPaper-root {
   height: 100%;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 .list .title {
   font-size: 1rem;
   color: #3d3d3d;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   width: auto;
 }
 
@@ -118,24 +126,25 @@ header h2 {
   cursor: pointer;
 }
 
-.list .info {  
-  font-size: 0.8em;  
+.list .info {
+  font-size: 0.8em;
 }
 
-.list .info li, .list .info li a {
-  margin-bottom: .15rem;
+.list .info li,
+.list .info li a {
+  margin-bottom: 0.15rem;
   display: flex;
   align-items: center;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
-.list .info li:last-child{
+.list .info li:last-child {
   margin: 0;
 }
 .list .feature {
   display: flex;
 }
 .list .feature > * {
-  margin-right: .3rem;  
+  margin-right: 0.3rem;
 }
 .list .feature div {
   display: flex;
@@ -143,12 +152,12 @@ header h2 {
 }
 
 .list .container svg {
-  margin-right: .25rem;
+  margin-right: 0.25rem;
   font-size: 1rem;
 }
 
 .map {
-  height: 94vh;   
+  height: 93.5vh;
 }
 
 .onmap {
@@ -159,33 +168,40 @@ header h2 {
   min-width: 250px;
 }
 
-
-
-@media (min-width: 768px){
-.search{
-  width: 25.5rem;
-}
-.list {
-  width: 26rem;
-  height: auto;
-  right: 0;
-  top: 9rem; 
-}
-.list .container {
-  display: inline-block;
-  width: 100%;
-  padding: 0;
-  height: 82vh;
-  overflow-y: scroll;
-}
-.list .container::-webkit-scrollbar{
-  display: none;
-}
-.list .card {
-  height: 8rem;
-  margin-bottom: .5rem;
-}
-.MuiPaper-root{
-  background-color: rgba( 255, 255, 255, .85 );
-}
+@media (min-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  .search {
+    width: 25.5rem;
+  }
+  .contact {
+    position: absolute;
+    top: 4rem;
+    left: 0.5rem;
+    z-index: 2;
+  }
+  .list {
+    width: 26rem;
+    height: auto;
+    right: 0;
+    top: 9rem;
+  }
+  .list .container {
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    height: 82vh;
+    overflow-y: scroll;
+  }
+  .list .container::-webkit-scrollbar {
+    display: none;
+  }
+  .list .card {
+    height: 8rem;
+    margin-bottom: 0.5rem;
+  }
+  .MuiPaper-root {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
 }

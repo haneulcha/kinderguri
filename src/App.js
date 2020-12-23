@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router } from "@reach/router";
-import Landing from './landing'
+import "./style.css";
+import Landing from "./component/Landing";
 
 const App = () => {
   return (

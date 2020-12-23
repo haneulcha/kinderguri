@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-import Filter from "./filter";
-import useDropdown from "./useDropdown";
-import { callApiForChild, callApiForKinder } from './fetch'
+import Filter from "../util/filter";
+import useDropdown from "../util/useDropdown";
+import { callApiForChild, callApiForKinder } from "../util/fetch";
 
 const Search = (props) => {
   const [institute, InstituteDropdown] = useDropdown("영/유아", "", [
@@ -38,7 +38,7 @@ const Search = (props) => {
 
   return (
     <section className="search">
-      <form        
+      <form
         onSubmit={(e) => {
           e.preventDefault();
           requestPlaces();
