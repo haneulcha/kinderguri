@@ -108,7 +108,7 @@ header h2 {
 
 .list .card {
   margin-right: 0.5rem;
-  min-width: 16rem;
+  min-width: 20rem;
   height: 9.5rem;
 }
 .MuiPaper-root {
@@ -151,6 +151,11 @@ header h2 {
   align-items: center;
 }
 
+.list .feature img {
+  width: 1rem;
+  height: 1rem;
+}
+
 .list .container svg {
   margin-right: 0.25rem;
   font-size: 1rem;
@@ -173,7 +178,8 @@ header h2 {
     font-size: 2rem;
   }
   .search {
-    width: 25.5rem;
+    max-width: unset;
+    width: 30rem;
   }
   .contact {
     position: absolute;
@@ -182,7 +188,7 @@ header h2 {
     z-index: 2;
   }
   .list {
-    width: 26rem;
+    width: 31rem;
     height: auto;
     right: 0;
     top: 9rem;

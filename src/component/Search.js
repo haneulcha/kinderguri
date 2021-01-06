@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-import Filter from "../util/filter";
+import {filterForChild, filterForKinder} from "../util/filter";
 import useDropdown from "../util/useDropdown";
 import { callApiForChild, callApiForKinder } from "../util/fetch";
 
-const Search = (props) => {
+const Search = ({ setList }) => {
   const [institute, InstituteDropdown] = useDropdown("영/유아", "", [
     "어린이집",
     "유치원",
   ]);
   const [options, setOptions] = useState([]);
-  const [type, SetDropdown] = useDropdown("유형", "", options);
-  const [places, setPlaces] = useState([]);
-
+  const [type, TypeDropdown] = useDropdown("유형", "", options);
+ 
   const childHouseType = ["가정", "국공립", "민간", "법인·단체", "직장"];
   const kindergartenType = ["공립", "사립"];
 
-  async function requestPlaces() {
+  async function requestPlaces(institute) {
     if (institute === "어린이집") {
-      const loadedChildArray = await callApiForChild();
-      setPlaces(loadedChildArray || []);
+      const loadedChild = await callApiForChild();      
+      const final = filterForChild(loadedChild, type)      
+      setList(final)      
+
     } else if (institute === "유치원") {
-      const loadedKinderArray = await callApiForKinder();
-      setPlaces(loadedKinderArray || []);
-    } else setPlaces([]);
+      const loadedKinder = await callApiForKinder();
+      const final = filterForKinder(loadedKinder, type)
+      setList(final)      
+
+    } else setList([]);
   }
 
   useEffect(() => {
@@ -41,22 +44,16 @@ const Search = (props) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          requestPlaces();
+          requestPlaces(institute);
         }}
       >
         <InstituteDropdown />
-        <SetDropdown />
+        <TypeDropdown />
         <Button type="submit" variant="outlined" color="default" size="small">
           찾기
         </Button>
       </form>
-      <Filter
-        institute={institute}
-        type={type}
-        places={places}
-        setList={props.setList}
-        setMapMarking={props.setMapMarking}
-      />
+      
     </section>
   );
 };

@@ -1,13 +1,12 @@
 /*global kakao*/
 import React from "react";
-import dotenv from "dotenv";
-dotenv.config();
 
 class Map extends React.Component {
   componentDidUpdate() {
     const { list, markerId } = this.props;
     const script = document.createElement("script");
     const MAP_KEY = process.env.MAP_KEY;
+
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${MAP_KEY}&autoload=false`;
 
     document.head.appendChild(script);
