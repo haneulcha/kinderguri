@@ -1,19 +1,50 @@
 import { RESTDataSource } from "apollo-datasource-rest";
+import dotenv from "dotenv";
+dotenv.config();
 
-const AGE_0_KINDERGARTEN_URL = `https://openapi.gg.go.kr/Age0PrvuuseKidgartn?KEY=${process.env.API_KEY}&TYPE=json`;
+const AGE_ZERO_KINDERGARTEN_URL = `https://openapi.gg.go.kr/`;
 
-export class AgeZeroKindergartenAPI extends RESTDataSource {
+export class ageZeroKindergartenAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = AGE_0_KINDERGARTEN_URL;
+    this.baseURL = AGE_ZERO_KINDERGARTEN_URL;
+  }
+
+  kindergartenReducer(result) {
+    return {
+      name: result.KIDGARTN_NM,
+      tel: result.KIDGARTN_TELNO,
+      location: {
+        city: result.SIGUN_NM,
+        district: result.ADMDONG_NM,
+        road: result.REFINE_ROADNM_ADDR,
+        lot: result.REFINE_LOTNO_ADDR,
+        lat: parseFloat(result.REFINE_WGS84_LAT),
+        long: parseFloat(result.REFINE_WGS84_LOGT),
+      },
+      personnel: {
+        staff: result.CHLDCARE_SCHLSTAF_CNT,
+        kid: result.CHILD_PSTPSN_CNT,
+      },
+      timeExt: result.TM_EXTS_TYPE_YN === "Y" ? true : false,
+      update: result.STD_YM,
+    };
   }
 
   async getAllKindergartens() {
-    const response = await this.get();
-    console.log("response", response);
-  }
+    try {
+      const { Age0PrvuuseKidgartn } = await this.get(
+        `Age0PrvuuseKidgartn?KEY=${process.env.API_KEY}&SIGUN_NM=구리시&TYPE=json`
+      ).then((str) => JSON.parse(str));
 
-  getReducer(result) {
-    return result;
+      const [head, row] = Age0PrvuuseKidgartn;
+      const rowArray = row.row;
+
+      return Array.isArray(rowArray)
+        ? rowArray.map((data) => this.kindergartenReducer(data))
+        : [];
+    } catch (err) {
+      console.error(err);
+    }
   }
 }

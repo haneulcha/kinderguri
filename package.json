@@ -5,16 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "apollo-datasource-rest": "^0.10.0",
+    "apollo-server": "^2.21.1",
     "apollo-server-express": "^2.21.1",
     "dotenv": "^8.2.0",
+    "eslint-plugin-graphql": "^4.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0"
   },
