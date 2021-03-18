@@ -1,30 +1,51 @@
 import { gql } from "apollo-server-express";
 
-const age0Kindergarten = gql`
+const query = gql`
   type Location {
     city: String!
     district: String!
     road: String!
-    lot: Float!
-    lat: String!
-    long: String!
+    lot: String!
+    lat: Float!
+    long: Float!
   }
+
   type Personnel {
     staff: Int
     kid: Int
   }
+
+  type Facility {
+    room: Int
+    playground: Int
+    cctv: Int
+    shuttle: Boolean
+  }
+
   type Kindergarten {
     name: String!
     tel: String
     location: Location!
     personnel: Personnel
     timeExt: Boolean
-    update: String
+    updated: String!
+  }
+
+  type ChildHouse {
+    name: String!
+    type: String!
+    tel: String
+    location: Location!
+    personnel: Personnel
+    facility: Facility!
+    hompage: String
+    updated: String!
   }
 
   type Query {
     age0Kindergartens: [Kindergarten]!
+    childHouses: [ChildHouse]!
   }
 `;
 
-export default age0Kindergarten;
+export default query;

@@ -2,7 +2,7 @@ import { RESTDataSource } from "apollo-datasource-rest";
 import dotenv from "dotenv";
 dotenv.config();
 
-const AGE_ZERO_KINDERGARTEN_URL = `https://openapi.gg.go.kr/`;
+const AGE_ZERO_KINDERGARTEN_URL = `https://openapi.gg.go.kr/Age0PrvuuseKidgartn`;
 
 export class ageZeroKindergartenAPI extends RESTDataSource {
   constructor() {
@@ -27,14 +27,14 @@ export class ageZeroKindergartenAPI extends RESTDataSource {
         kid: result.CHILD_PSTPSN_CNT,
       },
       timeExt: result.TM_EXTS_TYPE_YN === "Y" ? true : false,
-      update: result.STD_YM,
+      updated: result.STD_YM,
     };
   }
 
   async getAllKindergartens() {
     try {
       const { Age0PrvuuseKidgartn } = await this.get(
-        `Age0PrvuuseKidgartn?KEY=${process.env.API_KEY}&SIGUN_NM=구리시&TYPE=json`
+        `?KEY=${process.env.API_KEY}&SIGUN_NM=구리시&TYPE=json`
       ).then((str) => JSON.parse(str));
 
       const [head, row] = Age0PrvuuseKidgartn;
