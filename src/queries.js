@@ -4,10 +4,10 @@ const query = gql`
   type Location {
     city: String!
     district: String!
-    road: String!
-    lot: String!
-    lat: Float!
-    long: Float!
+    road: String
+    lot: String
+    lat: Float
+    long: Float
   }
 
   type Personnel {
@@ -24,10 +24,12 @@ const query = gql`
 
   type Kindergarten {
     name: String!
-    tel: String
+    type: String!
+    tel: String!
     location: Location!
     personnel: Personnel
     timeExt: Boolean
+    homepage: String
     updated: String!
   }
 
@@ -38,13 +40,14 @@ const query = gql`
     location: Location!
     personnel: Personnel
     facility: Facility!
-    hompage: String
+    homepage: String
     updated: String!
   }
 
   type Query {
     age0Kindergartens: [Kindergarten]!
     childHouses: [ChildHouse]!
+    kindergartens: [Kindergarten]!
   }
 `;
 

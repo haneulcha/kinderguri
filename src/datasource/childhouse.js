@@ -33,7 +33,7 @@ export class childHouseAPI extends RESTDataSource {
         cctv: result.CCTV_INSTL_CNT,
         shuttle: result.ATNDSKL_VEHCLE_OPERT_YN === "Y" ? true : false,
       },
-      hompage: result.HMPG_ADDR ? result.HMPG_ADDR : "X",
+      homepage: result.HMPG_ADDR ? result.HMPG_ADDR : "X",
       updated: result.DATA_STD_DE,
     };
   }

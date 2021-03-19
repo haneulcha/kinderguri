@@ -13,6 +13,7 @@ export class ageZeroKindergartenAPI extends RESTDataSource {
   kindergartenReducer(result) {
     return {
       name: result.KIDGARTN_NM,
+      type: result.KIDGARTN_TYPE_NM,
       tel: result.KIDGARTN_TELNO,
       location: {
         city: result.SIGUN_NM,
@@ -26,15 +27,16 @@ export class ageZeroKindergartenAPI extends RESTDataSource {
         staff: result.CHLDCARE_SCHLSTAF_CNT,
         kid: result.CHILD_PSTPSN_CNT,
       },
+      homepage: "",
       timeExt: result.TM_EXTS_TYPE_YN === "Y" ? true : false,
       updated: result.STD_YM,
     };
   }
 
-  async getAllKindergartens() {
+  async getAllAgeZeroKindergartens() {
     try {
       const { Age0PrvuuseKidgartn } = await this.get(
-        `?KEY=${process.env.API_KEY}&SIGUN_NM=구리시&TYPE=json`
+        `?KEY=${process.env.API_KEY}&SIGUN_NM=구리시&Type=json`
       ).then((str) => JSON.parse(str));
 
       const [head, row] = Age0PrvuuseKidgartn;
