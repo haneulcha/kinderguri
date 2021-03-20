@@ -22,6 +22,17 @@ const query = gql`
     shuttle: Boolean
   }
 
+  type Class {
+    large: String
+    middle: String
+    small: String
+  }
+
+  type ImgUrl {
+    original: String
+    thumbnail: String
+  }
+
   type Kindergarten {
     name: String!
     type: String!
@@ -44,10 +55,30 @@ const query = gql`
     updated: String!
   }
 
+  type Hospital {
+    name: String!
+    type: String!
+    tel: String
+    location: Location!
+    homepage: String
+  }
+
+  type Tour {
+    name: String!
+    tel: String
+    type: String
+    class: Class
+    img: ImgUrl
+    location: Location!
+    updated: String
+  }
+
   type Query {
     age0Kindergartens: [Kindergarten]!
     childHouses: [ChildHouse]!
     kindergartens: [Kindergarten]!
+    hospitalsAtNight: [Hospital]!
+    barrierFreeTour: [Tour]!
   }
 `;
 

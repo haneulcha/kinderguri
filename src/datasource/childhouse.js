@@ -41,7 +41,7 @@ export class childHouseAPI extends RESTDataSource {
   async getAllChildhouses() {
     try {
       const { ChildHouse } = await this.get(
-        `?KEY=${process.env.API_KEY}&Type=json&SIGUN_NM=구리시`
+        `?KEY=${process.env.API_KEY}&Type=json&SIGUN_NM=구리시&pSize=200`
       ).then((str) => JSON.parse(str));
 
       const [head, row] = ChildHouse;
