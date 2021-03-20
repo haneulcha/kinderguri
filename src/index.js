@@ -22,6 +22,10 @@ const resolvers = {
       await dataSources.HospitalsAtNightAPI.getAllHospitals(),
     barrierFreeTour: async (_, __, { dataSources }) =>
       await dataSources.BarrierFreeTourAPI.getAllTours(),
+    barrierFreeTourInCity: async (_, { city }, { dataSources }) =>
+      await dataSources.BarrierFreeTourAPI.getToursInCity({ city }),
+    barrierFreeTourOptions: async (_, __, { dataSources }) =>
+      await dataSources.BarrierFreeTourAPI.getAllCityList(),
   },
 };
 

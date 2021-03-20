@@ -79,6 +79,8 @@ const query = gql`
     kindergartens: [Kindergarten]!
     hospitalsAtNight: [Hospital]!
     barrierFreeTour: [Tour]!
+    barrierFreeTourOptions: [String]!
+    barrierFreeTourInCity(city: String!): [Tour]!
   }
 `;
 

@@ -40,6 +40,34 @@ export class barrierFreeTourAPI extends RESTDataSource {
     };
   }
 
+  async getToursInCity({ city }) {
+    const { NothgObstclTourInfo } = await this.get(
+      `?KEY=${process.env.API_KEY}&Type=json&SIGUN_NM=${city}`
+    ).then((str) => JSON.parse(str));
+
+    const [head, row] = NothgObstclTourInfo;
+    const rowArray = row.row;
+    return Array.isArray(rowArray)
+      ? rowArray.map((data) => this.barrierFreeTourReducer(data))
+      : [];
+  }
+
+  async getAllCityList() {
+    try {
+      const { NothgObstclTourInfo } = await this.get(
+        `?KEY=${process.env.API_KEY}&Type=json&pSize=1000`
+      ).then((str) => JSON.parse(str));
+
+      const [head, row] = NothgObstclTourInfo;
+      const array = row.row.map((item) => item.SIGUN_NM);
+      const cityArray = new Set([...array]);
+
+      return cityArray;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getAllTours() {
     try {
       const { NothgObstclTourInfo: guriInfo } = await this.get(
