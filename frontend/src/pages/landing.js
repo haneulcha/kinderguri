@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Search from "./Search";
-import Map from "./Map";
-import List from "./List";
+import Search from "../component/Search";
+import Map from "../component/Map";
+import List from "../component/List";
 import ContactSupportIcon from "@material-ui/icons/ContactSupport";
 
 const Landing = () => {
@@ -9,8 +9,8 @@ const Landing = () => {
   const [mapMarking, setMapMarking] = useState();
 
   useEffect(() => {
-    setMapMarking()
-  }, [list])
+    setMapMarking();
+  }, [list]);
 
   return (
     <>
