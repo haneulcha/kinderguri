@@ -19,15 +19,15 @@ const Landing = () => {
           <h1>Kinderguri</h1>
           <h2>구리시 소재 유치원·어린이집</h2>
         </header>
-        <Search setList={setList} />
+        {/* <Search setList={setList} />
         <List list={list} markingFn={setMapMarking} />
         <div className="contact">
           <a href="http://haneulcha.com" target="_blank">
             <ContactSupportIcon />
           </a>
-        </div>
+        </div> */}
       </div>
-      <Map list={list} markerId={mapMarking} />
+      {/* <Map list={list} markerId={mapMarking} /> */}
     </>
   );
 };
