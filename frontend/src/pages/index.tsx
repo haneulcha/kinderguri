@@ -1,13 +1,13 @@
 import React from "react";
 import { Router } from "@reach/router";
 import Landing from "./landing";
-import ChildCare from "./childcare";
+import ChildHouse from "./childhouse";
 
 export const App = () => {
   return (
     <Router>
       {/* <Landing path="/" /> */}
-      <ChildCare path="childcare" />
+      <ChildHouse path="childhouse" />
       {/* <Medical path="medical" />
       <Cultural path="cultural" /> */}
     </Router>

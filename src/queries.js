@@ -76,6 +76,7 @@ const query = gql`
   type Query {
     age0Kindergartens: [Kindergarten]!
     childHouses: [ChildHouse]!
+    childHousesTypes: [String]!
     kindergartens: [Kindergarten]!
     hospitalsAtNight: [Hospital]!
     barrierFreeTour: [Tour]!

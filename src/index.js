@@ -16,6 +16,8 @@ const resolvers = {
       await dataSources.AgeZeroKindergartenAPI.getAllAgeZeroKindergartens(),
     childHouses: async (_, __, { dataSources }) =>
       await dataSources.ChildHouseAPI.getAllChildhouses(),
+    childHousesTypes: async (_, __, { dataSources }) =>
+      await dataSources.ChildHouseAPI.getChildhousesTypes(),
     kindergartens: async (_, __, { dataSources }) =>
       await dataSources.KindergartenAPI.getAllKindergartens(),
     hospitalsAtNight: async (_, __, { dataSources }) =>

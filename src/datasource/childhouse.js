@@ -38,6 +38,22 @@ export class childHouseAPI extends RESTDataSource {
     };
   }
 
+  async getChildhousesTypes() {
+    try {
+      const { ChildHouse } = await this.get(
+        `?KEY=${process.env.API_KEY}&Type=json&SIGUN_NM=구리시&pSize=200`
+      ).then((str) => JSON.parse(str));
+
+      const [head, row] = ChildHouse;
+      const types = row.row.map((item) => item.KIDGARTN_DIV_NM);
+      const typeArray = new Set([...types]);
+
+      return typeArray;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async getAllChildhouses() {
     try {
       const { ChildHouse } = await this.get(
