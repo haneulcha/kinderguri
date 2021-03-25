@@ -10,7 +10,7 @@ import { App } from "./pages";
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
-  uri: "http://localhost:4000/graphql",
+  uri: "http://localhost:2000/graphql",
 });
 
 ReactDOM.render(

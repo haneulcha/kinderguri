@@ -43,10 +43,10 @@ const server = new ApolloServer({
   }),
 });
 
-server.listen().then(() => {
+server.listen({ port: 2000 }).then(() => {
   console.log(`
       Server is running!
-      Listening on port 4000
+      Listening on port 2000
       Explore at https://studio.apollographql.com/dev
     `);
 });

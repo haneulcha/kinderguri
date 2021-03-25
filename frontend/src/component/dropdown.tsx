@@ -1,20 +1,20 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, Dispatch, SetStateAction } from "react";
 
 interface DropDownProps {
   name: string;
   list: string[];
+  setOption: Dispatch<SetStateAction<string>>;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ name, list }) => {
-  const [select, setSelect] = useState<string>();
-
+const DropDown: React.FC<DropDownProps> = ({ name, list, setOption }) => {
+  const [value, setValue] = useState("");
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("selected", select);
+    setOption(value);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelect(event.target.value);
+    setValue(event.target.value);
   };
 
   return (
@@ -24,9 +24,10 @@ const DropDown: React.FC<DropDownProps> = ({ name, list }) => {
         <select
           name={name}
           id={`dropdown-${name}`}
-          value={select}
+          value={value}
           onChange={handleChange}
         >
+          <option value={""}>전체</option>
           {list &&
             list.map((item, i) => (
               <option value={item} key={`select-${i}`}>

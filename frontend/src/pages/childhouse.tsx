@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
 import DropDown from "../component/dropdown";
@@ -28,11 +28,18 @@ const queryChildHouses = () => {
 };
 
 interface ChildHouseProps extends RouteComponentProps {}
+
 const ChildHouse: React.FC<ChildHouseProps> = () => {
   const [
     { loading: loadingList, data: dataList, error: errorList },
     { loading: loadingTypes, data: dataTypes, error: errorTypes },
   ] = queryChildHouses();
+  const [type, setType] = useState<string>("");
+
+  const filteredList = (arr: any[], type: string): any => {
+    if (!type.length) return arr;
+    return arr.filter((item) => item.type === type);
+  };
 
   if (loadingList) return <p>Loading</p>;
   if (errorList) return <p>ERROR</p>;
@@ -45,15 +52,19 @@ const ChildHouse: React.FC<ChildHouseProps> = () => {
         <DropDown
           name="어린이집"
           list={!loadingTypes && dataTypes.childHousesTypes}
+          setOption={setType}
         />
       </SearchBar>
       {dataList.childHouses &&
-        dataList.childHouses.map((house: any, i: number) => (
-          <Fragment key={`list-${i}`}>
-            <h2>{house.name}</h2>
-            <p>{house.tel}</p>
-          </Fragment>
-        ))}
+        filteredList(dataList.childHouses, type).map(
+          (house: any, i: number) => (
+            <Fragment key={`list-${i}`}>
+              <h2>{house.name}</h2>
+              <p>{house.type}</p>
+              <p>{house.tel}</p>
+            </Fragment>
+          )
+        )}
     </>
   );
 };
