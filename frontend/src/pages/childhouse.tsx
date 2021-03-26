@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
+import ListItem from "../component/list-item";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
 
@@ -30,9 +31,11 @@ const queryChildHouses = () => {
   return [all, age0];
 };
 
-interface ChildHouseProps extends RouteComponentProps {}
+interface ChildHouseProps extends RouteComponentProps {
+  children: any;
+}
 
-const ChildHouse: React.FC<ChildHouseProps> = () => {
+const ChildHouse: React.FC<ChildHouseProps> = ({ children }) => {
   const [
     { loading: loadingAll, data: dataAll, error: errorAll },
     { loading: loadingAge0, data: dataAge0, error: errorAge0 },
@@ -69,12 +72,14 @@ const ChildHouse: React.FC<ChildHouseProps> = () => {
       </SearchBar>
       {dataAll.childHouses &&
         filterList(dataAll.childHouses, type).map((house: any, i: number) => (
-          <Fragment key={`list-${i}`}>
-            <h2>{house.name}</h2>
-            <p>{house.type}</p>
-            <p>{house.tel}</p>
-          </Fragment>
+          <ListItem item={house} key={`list-${i}`} />
+          // <Fragment key={`list-${i}`}>
+          //   <h2>{house.name}</h2>
+          //   <p>{house.type}</p>
+          //   <p>{house.tel}</p>
+          // </Fragment>
         ))}
+      {children}
     </>
   );
 };
