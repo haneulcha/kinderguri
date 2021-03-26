@@ -10,12 +10,12 @@ const ListItem: React.FC<ListItemProps> = ({ item }: any) => {
   const location = useLocation();
 
   return (
-    <Fragment>
+    <div>
       <span>{type}</span>
       <h3>{name}</h3>
       <p>{tel}</p>
       <Link to={`${location.pathname}/${name}`}>자세히</Link>
-    </Fragment>
+    </div>
   );
 };
 

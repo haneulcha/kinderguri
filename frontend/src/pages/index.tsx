@@ -12,7 +12,7 @@ export const App = () => {
     <Router>
       {/* <Landing path="/" /> */}
       <ChildHouse path="childhouse">
-        <ChildHouseDetail path=":name" />
+        <ChildHouseDetail path=":childhousename" />
       </ChildHouse>
       <Kindergarten path="kindergarten" />
       <Medical path="medical" />

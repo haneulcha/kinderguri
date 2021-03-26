@@ -11,6 +11,10 @@ const GET_CHILDHOUSES = gql`
       name
       type
       tel
+      location {
+        lat
+        long
+      }
     }
   }
 `;
