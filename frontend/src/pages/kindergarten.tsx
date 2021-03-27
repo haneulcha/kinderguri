@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
+import ListItem from "../component/list-item";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
 
@@ -16,7 +17,7 @@ const GET_KINDERGARTENS = gql`
 
 interface KindergartenProps extends RouteComponentProps {}
 
-const Kindergarten: React.FC<KindergartenProps> = () => {
+const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
   const { loading: loadingAll, data: dataAll, error: errorAll } = useQuery(
     GET_KINDERGARTENS
   );
@@ -49,12 +50,9 @@ const Kindergarten: React.FC<KindergartenProps> = () => {
       </SearchBar>
       {dataAll.kindergartens &&
         filterList(dataAll.kindergartens, type).map((kg: any, i: number) => (
-          <Fragment key={`list-${i}`}>
-            <h2>{kg.name}</h2>
-            <p>{kg.type}</p>
-            <p>{kg.tel}</p>
-          </Fragment>
+          <ListItem item={kg} key={`list-${i}`} />
         ))}
+      {children}
     </>
   );
 };

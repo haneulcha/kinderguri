@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
+import ListItem from "../component/list-item";
 
 const GET_HOPITAL_AT_NIGHT = gql`
   query GetHospitalAtNightList {
@@ -16,7 +17,7 @@ const GET_HOPITAL_AT_NIGHT = gql`
 
 interface MedicalProps extends RouteComponentProps {}
 
-const Medical: React.FC<MedicalProps> = () => {
+const Medical: React.FC<MedicalProps> = ({ children }) => {
   const { loading: loadingHaN, data: dataHaN, error: errorHaN } = useQuery(
     GET_HOPITAL_AT_NIGHT
   );
@@ -48,15 +49,13 @@ const Medical: React.FC<MedicalProps> = () => {
         />
       </SearchBar>
       {dataHaN.hospitalsAtNight &&
-        filterList(dataHaN.hospitalsAtNight, type).map(
-          (item: any, i: number) => (
-            <Fragment key={`list-${i}`}>
-              <h2>{item.name}</h2>
-              <p>{item.type}</p>
-              <p>{item.tel}</p>
-            </Fragment>
-          )
-        )}
+        filterList(
+          dataHaN.hospitalsAtNight,
+          type
+        ).map((item: any, i: number) => (
+          <ListItem item={item} key={`list-${i}`} />
+        ))}
+      {children}
     </>
   );
 };

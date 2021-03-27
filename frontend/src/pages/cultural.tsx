@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
+import ListItem from "../component/list-item";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
 
@@ -14,9 +15,11 @@ const GET_BARREIRFREE = gql`
   }
 `;
 
-interface CulturalProps extends RouteComponentProps {}
+interface CulturalProps extends RouteComponentProps {
+  children: any;
+}
 
-const Cultural: React.FC<CulturalProps> = () => {
+const Cultural: React.FC<CulturalProps> = ({ children }) => {
   const { loading: loadingBf, data: dataBf, error: errorBf } = useQuery(
     GET_BARREIRFREE
   );
@@ -49,12 +52,14 @@ const Cultural: React.FC<CulturalProps> = () => {
       </SearchBar>
       {dataBf.barrierFreeTour &&
         filterList(dataBf.barrierFreeTour, type).map((tour: any, i: number) => (
-          <Fragment key={`list-${i}`}>
-            <h2>{tour.name}</h2>
-            <p>{tour.type}</p>
-            <p>{tour.tel}</p>
-          </Fragment>
+          <ListItem item={tour} key={`list-${i}`} />
+          // <Fragment key={`list-${i}`}>
+          //   <h2>{tour.name}</h2>
+          //   <p>{tour.type}</p>
+          //   <p>{tour.tel}</p>
+          // </Fragment>
         ))}
+      {children}
     </>
   );
 };

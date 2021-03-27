@@ -82,8 +82,8 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
     updated: "",
   };
 
-  const findChildHouse = (arr: any) => {
-    return arr.find((item: any) => item.name === childhousename);
+  const findChildHouse = (arr: any, name: any) => {
+    return arr.find((item: any) => item.name === name);
   };
 
   if (data) {
@@ -96,7 +96,7 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
       tel,
       type,
       updated,
-    } = findChildHouse(data.childHouses);
+    } = findChildHouse(data.childHouses, childhousename);
     info = {
       facility,
       homepage,
