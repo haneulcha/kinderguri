@@ -1,16 +1,22 @@
 import React, { Fragment, useState } from "React";
 import { useLocation, Link, RouteComponentProps } from "@reach/router";
+import { coordVar } from "../cache";
 
 interface ListItemProps extends RouteComponentProps {
   item: any;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }: any) => {
-  const { name, type, tel } = item;
+  const { name, type, tel, location: coord } = item;
   const location = useLocation();
 
+  const handleCoord = () => {
+    if (!coord) return;
+    coordVar([{ name, long: coord.long, lat: coord.lat }]);
+  };
+
   return (
-    <div>
+    <div onClick={handleCoord}>
       <span>{type}</span>
       <h3>{name}</h3>
       <p>{tel}</p>

@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
+import { coordVar } from "../cache";
 import ListItem from "../component/list-item";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
@@ -11,6 +12,7 @@ const GET_KINDERGARTENS = gql`
       name
       type
       tel
+      location
     }
   }
 `;
