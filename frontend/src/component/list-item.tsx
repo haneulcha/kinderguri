@@ -12,7 +12,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }: any) => {
 
   const handleCoord = () => {
     if (!coord) return;
-    coordVar([{ name, long: coord.long, lat: coord.lat }]);
+    coordVar([{ name, location: { long: coord.long, lat: coord.lat } }]);
   };
 
   return (

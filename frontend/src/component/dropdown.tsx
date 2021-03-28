@@ -1,8 +1,9 @@
 import React, { Fragment, useState, Dispatch, SetStateAction } from "react";
+import { extractTypes } from "../util";
 
 interface DropDownProps {
   name: string;
-  list: string[];
+  list: any[];
   setOption: Dispatch<SetStateAction<string>>;
 }
 
@@ -29,7 +30,7 @@ const DropDown: React.FC<DropDownProps> = ({ name, list, setOption }) => {
         >
           <option value={""}>전체</option>
           {list &&
-            list.map((item, i) => (
+            extractTypes(list).map((item: any, i: number) => (
               <option value={item} key={`select-${i}`}>
                 {item}
               </option>

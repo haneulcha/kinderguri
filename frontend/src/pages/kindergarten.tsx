@@ -1,10 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import { coordVar } from "../cache";
 import ListItem from "../component/list-item";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
+import { filterByType } from "../util";
+import { coordVar } from "../cache";
 
 const GET_KINDERGARTENS = gql`
   query GetKindergartenList {
@@ -12,7 +13,10 @@ const GET_KINDERGARTENS = gql`
       name
       type
       tel
-      location
+      location {
+        long
+        lat
+      }
     }
   }
 `;
@@ -25,16 +29,19 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
   );
   const [type, setType] = useState<string>("");
 
-  const filterList = (arr: any[], type: string): any => {
-    if (!type.length) return arr;
-    return arr.filter((item) => item.type === type);
-  };
-
-  const extractType = (arr: any[]): any => {
-    const types = arr.map((item) => item.type);
-    const typesInSet = new Set([...types]);
-    return Array.from(typesInSet);
-  };
+  useEffect(() => {
+    if (dataAll) {
+      const filteredArray = filterByType(dataAll.kindergartens, type).map(
+        (item: any) => {
+          return {
+            name: item.name,
+            location: { long: item.long, lat: item.lat },
+          };
+        }
+      );
+      coordVar([...filteredArray]);
+    }
+  }, [dataAll, type]);
 
   if (loadingAll) return <p>Loading</p>;
   if (errorAll) return <p>ERROR</p>;
@@ -46,12 +53,12 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
       <SearchBar>
         <DropDown
           name="유치원"
-          list={!loadingAll && extractType(dataAll.kindergartens)}
+          list={!loadingAll && dataAll.kindergartens}
           setOption={setType}
         />
       </SearchBar>
       {dataAll.kindergartens &&
-        filterList(dataAll.kindergartens, type).map((kg: any, i: number) => (
+        filterByType(dataAll.kindergartens, type).map((kg: any, i: number) => (
           <ListItem item={kg} key={`list-${i}`} />
         ))}
       {children}

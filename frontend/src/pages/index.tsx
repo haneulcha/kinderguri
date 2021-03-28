@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Router } from "@reach/router";
 import Landing from "./landing";
 import ChildHouse from "./childhouse";
@@ -9,23 +9,27 @@ import ChildHouseDetail from "../component/childhouse-detail";
 import CulturalDetail from "../component/cultural-detail";
 import MedicalDetail from "../component/medical-detail";
 import KindergartenDetail from "../component/kindergarten-detail";
+import Map from "../container/map";
 
 export const App = () => {
   return (
-    <Router>
-      {/* <Landing path="/" /> */}
-      <ChildHouse path="childhouse">
-        <ChildHouseDetail path=":childhousename" />
-      </ChildHouse>
-      <Kindergarten path="kindergarten">
-        <KindergartenDetail path=":kindergartenname" />
-      </Kindergarten>
-      <Medical path="medical">
-        <MedicalDetail path=":hospitalname" />
-      </Medical>
-      <Cultural path="cultural">
-        <CulturalDetail path=":bftourname" />
-      </Cultural>
-    </Router>
+    <Fragment>
+      <Router>
+        {/* <Landing path="/" /> */}
+        <ChildHouse path="childhouse">
+          <ChildHouseDetail path=":childhousename" />
+        </ChildHouse>
+        <Kindergarten path="kindergarten">
+          <KindergartenDetail path=":kindergartenname" />
+        </Kindergarten>
+        <Medical path="medical">
+          <MedicalDetail path=":hospitalname" />
+        </Medical>
+        <Cultural path="cultural">
+          <CulturalDetail path=":bftourname" />
+        </Cultural>
+      </Router>
+      <Map />
+    </Fragment>
   );
 };
