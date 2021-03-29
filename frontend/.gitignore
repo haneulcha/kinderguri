@@ -4,4 +4,5 @@ dist/
 coverage/
 .vscode/
 .env
+.env.development
 bug.txt

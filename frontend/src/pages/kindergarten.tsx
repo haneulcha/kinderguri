@@ -35,7 +35,7 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
         (item: any) => {
           return {
             name: item.name,
-            location: { long: item.long, lat: item.lat },
+            location: { long: item.location.long, lat: item.location.lat },
           };
         }
       );
