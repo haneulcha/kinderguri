@@ -48,7 +48,6 @@ const KindergartenDetail: React.FC<KindergartenDetailProps> = ({
   };
 
   if (data) {
-    console.log(findKindergarten(data.kindergartens, kindergartenname));
     const {
       homepage,
       location,

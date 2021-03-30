@@ -1,9 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
+import { filterByType } from "../util";
 import ListItem from "../component/list-item";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
+import { coordVar } from "../cache";
 
 const GET_CHILDHOUSES = gql`
   query GetChildHousesList {
@@ -19,50 +21,33 @@ const GET_CHILDHOUSES = gql`
   }
 `;
 
-const GET_AGE0KINDERGARTENS = gql`
-  query GetAge0KindergartenList {
-    age0Kindergartens {
-      name
-      type
-      tel
-    }
-  }
-`;
-
-const queryChildHouses = () => {
-  const all = useQuery(GET_CHILDHOUSES);
-  const age0 = useQuery(GET_AGE0KINDERGARTENS);
-  return [all, age0];
-};
-
 interface ChildHouseProps extends RouteComponentProps {
   children: any;
 }
 
 const ChildHouse: React.FC<ChildHouseProps> = ({ children }) => {
-  const [
-    { loading: loadingAll, data: dataAll, error: errorAll },
-    { loading: loadingAge0, data: dataAge0, error: errorAge0 },
-  ] = queryChildHouses();
+  const { loading: loadingAll, data: dataAll, error: errorAll } = useQuery(
+    GET_CHILDHOUSES
+  );
   const [type, setType] = useState<string>("");
 
-  // TODO: 함수형으로. dataAge0 제어
-  const filterList = (arr: any[], type: string): any => {
-    if (!type.length) return arr.concat(dataAge0.age0Kindergartens);
-    if (type === "0세 전용") return dataAge0.age0Kindergartens;
-    return arr.filter((item) => item.type === type);
-  };
+  useEffect(() => {
+    if (dataAll) {
+      const filteredArray = filterByType(dataAll.childHouses, type).map(
+        (item: any) => {
+          return {
+            name: item.name,
+            location: { long: item.location.long, lat: item.location.lat },
+          };
+        }
+      );
+      coordVar([...filteredArray]);
+    }
+  }, [dataAll, type]);
 
-  const extractType = (arr: any[]): any => {
-    const types = arr.map((item) => item.type);
-    const typesInSet = new Set([...types]);
-    const typesArray = Array.from(typesInSet);
-    return typesArray.concat(["0세 전용"]);
-  };
-
-  if (loadingAll || loadingAge0) return <p>Loading</p>;
-  if (errorAll || errorAge0) return <p>ERROR</p>;
-  if (!dataAll || !dataAge0) return <p>Not found</p>;
+  if (loadingAll) return <p>Loading</p>;
+  if (errorAll) return <p>ERROR</p>;
+  if (!dataAll) return <p>Not found</p>;
 
   return (
     <>
@@ -70,18 +55,13 @@ const ChildHouse: React.FC<ChildHouseProps> = ({ children }) => {
       <SearchBar>
         <DropDown
           name="어린이집"
-          list={!loadingAll && !loadingAge0 && extractType(dataAll.childHouses)}
+          list={!loadingAll && dataAll.childHouses}
           setOption={setType}
         />
       </SearchBar>
       {dataAll.childHouses &&
-        filterList(dataAll.childHouses, type).map((house: any, i: number) => (
+        filterByType(dataAll.childHouses, type).map((house: any, i: number) => (
           <ListItem item={house} key={`list-${i}`} />
-          // <Fragment key={`list-${i}`}>
-          //   <h2>{house.name}</h2>
-          //   <p>{house.type}</p>
-          //   <p>{house.tel}</p>
-          // </Fragment>
         ))}
       {children}
     </>

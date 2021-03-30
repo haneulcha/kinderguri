@@ -1,15 +1,15 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
+import { filterByType } from "../util";
 import ListItem from "../component/list-item";
 import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
 import { coordVar } from "../cache";
-import { filterByType } from "../util";
 
-const GET_BARREIRFREE = gql`
-  query GetBarrierFreeList {
-    barrierFreeTour {
+const GET_AGE0KINDERGARTENS = gql`
+  query GetAge0KindergartenList {
+    age0Kindergartens {
       name
       type
       tel
@@ -21,19 +21,19 @@ const GET_BARREIRFREE = gql`
   }
 `;
 
-interface CulturalProps extends RouteComponentProps {
+interface Age0ChildhouseProps extends RouteComponentProps {
   children: any;
 }
 
-const Cultural: React.FC<CulturalProps> = ({ children }) => {
+const Age0Childhouse: React.FC<Age0ChildhouseProps> = ({ children }) => {
   const { loading: loadingAll, data: dataAll, error: errorAll } = useQuery(
-    GET_BARREIRFREE
+    GET_AGE0KINDERGARTENS
   );
   const [type, setType] = useState<string>("");
 
   useEffect(() => {
     if (dataAll) {
-      const filteredArray = filterByType(dataAll.barrierFreeTour, type).map(
+      const filteredArray = filterByType(dataAll.age0Kindergartens, type).map(
         (item: any) => {
           return {
             name: item.name,
@@ -51,24 +51,24 @@ const Cultural: React.FC<CulturalProps> = ({ children }) => {
 
   return (
     <>
-      <h1>구리 인근 무장애 여행</h1>
+      <h1>0세 전용 어린이집</h1>
       <SearchBar>
         <DropDown
-          name="무장애(Barrier-free) 여행"
-          list={!loadingAll && dataAll.barrierFreeTour}
+          name="0세 전용 어린이집"
+          list={!loadingAll && dataAll.age0Kindergartens}
           setOption={setType}
         />
       </SearchBar>
-      {dataAll.barrierFreeTour &&
+      {dataAll.age0Kindergartens &&
         filterByType(
-          dataAll.barrierFreeTour,
+          dataAll.age0Kindergartens,
           type
-        ).map((tour: any, i: number) => (
-          <ListItem item={tour} key={`list-${i}`} />
+        ).map((house: any, i: number) => (
+          <ListItem item={house} key={`list-${i}`} />
         ))}
       {children}
     </>
   );
 };
 
-export default Cultural;
+export default Age0Childhouse;

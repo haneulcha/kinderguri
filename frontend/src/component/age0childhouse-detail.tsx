@@ -1,10 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, RouteComponentProps } from "@reach/router";
 
-const READ_CHILDHOUSE = gql`
-  query readChildHouse {
-    childHouses {
+const READ_AGE0CHILDHOUSE = gql`
+  query readAge0Childhouse {
+    age0Kindergartens {
       name
       type
       tel
@@ -16,12 +16,7 @@ const READ_CHILDHOUSE = gql`
         staff
         kid
       }
-      facility {
-        room
-        playground
-        cctv
-        shuttle
-      }
+      timeExt
       homepage
       updated
     }
@@ -29,25 +24,19 @@ const READ_CHILDHOUSE = gql`
 `;
 
 interface ChildHouseDetailProps extends RouteComponentProps {
-  childhousename?: string;
+  age0childhousename?: string;
 }
 
 const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
-  childhousename,
+  age0childhousename,
 }) => {
-  const { loading, data, error } = useQuery(READ_CHILDHOUSE);
+  const { loading, data, error } = useQuery(READ_AGE0CHILDHOUSE);
 
   if (loading) return <p>Loading</p>;
   if (error) return <p>ERROR</p>;
   if (!data) return <p>Not found</p>;
 
   let info = {
-    facility: {
-      room: 0,
-      playground: 0,
-      cctv: 0,
-      shuttle: 0,
-    },
     homepage: "",
     location: {
       road: "",
@@ -60,6 +49,7 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
     },
     tel: "",
     type: "",
+    timeExt: "",
     updated: "",
   };
 
@@ -69,7 +59,7 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
 
   if (data) {
     const {
-      facility,
+      timeExt,
       homepage,
       location,
       name,
@@ -77,17 +67,18 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
       tel,
       type,
       updated,
-    } = findChildHouse(data.childHouses, childhousename);
+    } = findChildHouse(data.age0Kindergartens, age0childhousename);
     info = {
-      facility,
       homepage,
       location,
       name,
       personnel,
       tel,
       type,
+      timeExt,
       updated,
     };
+    console.log(info);
   }
 
   return (
@@ -96,16 +87,12 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
       <h2>이름: {info.name}</h2>
       <p>타입: {info.type}</p>
       <p>전화: {info.tel}</p>
+      <p>홈페이지: {info.homepage}</p>
       <ul>
         <li>교직원수: {info.personnel.staff}</li>
         <li>아동정원수: {info.personnel.kid}</li>
       </ul>
-      <ul>
-        <li>cctv: {info.facility.cctv}</li>
-        <li>놀이터: {info.facility.playground}</li>
-        <li>보육실: {info.facility.room}</li>
-        <li>셔틀버스: {info.facility.shuttle}</li>
-      </ul>
+      <p>시간 연장 여부: {info.timeExt}</p>
 
       <span>{info.updated} 기준</span>
       <Link to="../">뒤로가기</Link>
