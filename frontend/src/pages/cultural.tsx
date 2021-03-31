@@ -1,9 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import ListItem from "../component/list-item";
-import DropDown from "../component/dropdown";
-import SearchBar from "../component/search-bar";
+import { ListContainer, ListItem, DropDown, SearchBar } from "../component";
 import { coordVar } from "../cache";
 import { filterByType } from "../util";
 
@@ -59,13 +57,15 @@ const Cultural: React.FC<CulturalProps> = ({ children }) => {
           setOption={setType}
         />
       </SearchBar>
-      {dataAll.barrierFreeTour &&
-        filterByType(
-          dataAll.barrierFreeTour,
-          type
-        ).map((tour: any, i: number) => (
-          <ListItem item={tour} key={`list-${i}`} />
-        ))}
+      <ListContainer>
+        {dataAll.barrierFreeTour &&
+          filterByType(
+            dataAll.barrierFreeTour,
+            type
+          ).map((tour: any, i: number) => (
+            <ListItem item={tour} key={`list-${i}`} />
+          ))}
+      </ListContainer>
       {children}
     </>
   );

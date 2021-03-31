@@ -12,28 +12,31 @@ import MedicalDetail from "../component/medical-detail";
 import KindergartenDetail from "../component/kindergarten-detail";
 import Age0ChildhouseDetail from "../component/age0childhouse-detail";
 import Map from "../container/map";
+import PageContainer from "../component/page-container";
 
 export const App = () => {
   return (
     <Fragment>
-      <Router>
-        {/* <Landing path="/" /> */}
-        <ChildHouse path="childhouse">
-          <ChildHouseDetail path=":childhousename" />
-        </ChildHouse>
-        <Age0ChildHouse path="age0childhouse">
-          <Age0ChildhouseDetail path=":age0childhousename" />
-        </Age0ChildHouse>
-        <Kindergarten path="kindergarten">
-          <KindergartenDetail path=":kindergartenname" />
-        </Kindergarten>
-        <Medical path="medical">
-          <MedicalDetail path=":hospitalname" />
-        </Medical>
-        <Cultural path="cultural">
-          <CulturalDetail path=":bftourname" />
-        </Cultural>
-      </Router>
+      <PageContainer>
+        <Router>
+          {/* <Landing path="/" /> */}
+          <ChildHouse path="childhouse">
+            <ChildHouseDetail path=":childhousename" />
+          </ChildHouse>
+          <Age0ChildHouse path="age0childhouse">
+            <Age0ChildhouseDetail path=":age0childhousename" />
+          </Age0ChildHouse>
+          <Kindergarten path="kindergarten">
+            <KindergartenDetail path=":kindergartenname" />
+          </Kindergarten>
+          <Medical path="medical">
+            <MedicalDetail path=":hospitalname" />
+          </Medical>
+          <Cultural path="cultural">
+            <CulturalDetail path=":bftourname" />
+          </Cultural>
+        </Router>
+      </PageContainer>
       <Map />
     </Fragment>
   );

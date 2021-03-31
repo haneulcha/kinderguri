@@ -8,6 +8,7 @@ import { typeDefs } from "./schema";
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./pages";
+import { GlobalStyles } from "./styles";
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
@@ -17,6 +18,7 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
+    <GlobalStyles />
     <App />
   </ApolloProvider>,
   document.getElementById("root")

@@ -1,5 +1,5 @@
 /*global kakao*/
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
 import dotenv from "dotenv";
@@ -83,7 +83,7 @@ const Map: React.FC<MapProps> = () => {
         let container = document.getElementById("map");
         let options = {
           center: new window.kakao.maps.LatLng(37.6027778, 127.143088),
-          level: 7,
+          level: 6,
           draggable: true,
           scrollwheel: true,
           keyboardShortcuts: true,
@@ -96,10 +96,14 @@ const Map: React.FC<MapProps> = () => {
 
   if (loading) return <p>LOADING</p>;
   if (error) return <p>ERROR: {error.message}</p>;
-  if (data) {
-    console.log("coord", data);
-  }
-  return <h1>map</h1>;
+  // if (data) {
+  //   console.log("coord", data);
+  // }
+  return (
+    <Fragment>
+      <div id="map" className="map"></div>
+    </Fragment>
+  );
 };
 
 export default Map;

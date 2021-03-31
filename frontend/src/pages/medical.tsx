@@ -6,6 +6,7 @@ import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
 import ListItem from "../component/list-item";
 import { coordVar } from "../cache";
+import ListContainer from "../component/list-container";
 
 const GET_HOPITAL_AT_NIGHT = gql`
   query GetHospitalAtNightList {
@@ -49,7 +50,7 @@ const Medical: React.FC<MedicalProps> = ({ children }) => {
 
   return (
     <>
-      <h1>구리 인근 소아 야간진료 병원</h1>
+      <h1>소아 야간진료 병원</h1>
       <SearchBar>
         <DropDown
           name="소아 야간진료 병원"
@@ -57,13 +58,15 @@ const Medical: React.FC<MedicalProps> = ({ children }) => {
           setOption={setType}
         />
       </SearchBar>
-      {dataAll.hospitalsAtNight &&
-        filterByType(
-          dataAll.hospitalsAtNight,
-          type
-        ).map((item: any, i: number) => (
-          <ListItem item={item} key={`list-${i}`} />
-        ))}
+      <ListContainer>
+        {dataAll.hospitalsAtNight &&
+          filterByType(
+            dataAll.hospitalsAtNight,
+            type
+          ).map((item: any, i: number) => (
+            <ListItem item={item} key={`list-${i}`} />
+          ))}
+      </ListContainer>
       {children}
     </>
   );

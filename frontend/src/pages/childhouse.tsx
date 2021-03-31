@@ -1,11 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import { filterByType } from "../util";
-import ListItem from "../component/list-item";
-import DropDown from "../component/dropdown";
-import SearchBar from "../component/search-bar";
+import { ListContainer, ListItem, DropDown, SearchBar } from "../component";
 import { coordVar } from "../cache";
+import { filterByType } from "../util";
 
 const GET_CHILDHOUSES = gql`
   query GetChildHousesList {
@@ -59,10 +57,15 @@ const ChildHouse: React.FC<ChildHouseProps> = ({ children }) => {
           setOption={setType}
         />
       </SearchBar>
-      {dataAll.childHouses &&
-        filterByType(dataAll.childHouses, type).map((house: any, i: number) => (
-          <ListItem item={house} key={`list-${i}`} />
-        ))}
+      <ListContainer>
+        {dataAll.childHouses &&
+          filterByType(
+            dataAll.childHouses,
+            type
+          ).map((house: any, i: number) => (
+            <ListItem item={house} key={`list-${i}`} />
+          ))}
+      </ListContainer>
       {children}
     </>
   );

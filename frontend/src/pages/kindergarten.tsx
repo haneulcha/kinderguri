@@ -6,6 +6,7 @@ import DropDown from "../component/dropdown";
 import SearchBar from "../component/search-bar";
 import { filterByType } from "../util";
 import { coordVar } from "../cache";
+import ListContainer from "../component/list-container";
 
 const GET_KINDERGARTENS = gql`
   query GetKindergartenList {
@@ -57,10 +58,15 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
           setOption={setType}
         />
       </SearchBar>
-      {dataAll.kindergartens &&
-        filterByType(dataAll.kindergartens, type).map((kg: any, i: number) => (
-          <ListItem item={kg} key={`list-${i}`} />
-        ))}
+      <ListContainer>
+        {dataAll.kindergartens &&
+          filterByType(
+            dataAll.kindergartens,
+            type
+          ).map((kg: any, i: number) => (
+            <ListItem item={kg} key={`list-${i}`} />
+          ))}
+      </ListContainer>
       {children}
     </>
   );
