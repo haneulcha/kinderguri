@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, RouteComponentProps } from "@reach/router";
+import { DetailContainer } from "./";
 
 const READ_HOSPITAL_AT_NIGHT = gql`
   query readHospitalAtNight {
@@ -59,15 +60,22 @@ const MedicalDetail: React.FC<HospitalDetailProps> = ({ hospitalname }) => {
   }
 
   return (
-    <Fragment>
-      <h1>detail</h1>
-      <h2>이름: {info.name}</h2>
-      <p>타입: {info.type}</p>
-      <p>전화: {info.tel}</p>
-      <p>주소: {info.location.lot}</p>
-      <p>{info.homepage}</p>
-      <Link to="../">뒤로가기</Link>
-    </Fragment>
+    <DetailContainer>
+      <p className="type">{info.type}</p>
+      <h2>{info.name}</h2>
+      <a href={`tel:${info.tel}`} className="tel">
+        {info.tel}
+      </a>
+      <p className="addr">{info.location.road}</p>
+      {info.homepage !== "X" && (
+        <a href={info.homepage} target="_blank" className="homepage">
+          {info.homepage}
+        </a>
+      )}
+      <Link to="../" className="back">
+        뒤로가기
+      </Link>
+    </DetailContainer>
   );
 };
 

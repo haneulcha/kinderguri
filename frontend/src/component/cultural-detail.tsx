@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, RouteComponentProps } from "@reach/router";
+import { DetailContainer } from "./";
 
 const READ_BFTOUR = gql`
   query readBFTour {
@@ -84,17 +85,20 @@ const BFTourDetail: React.FC<BFTourDetailProps> = ({ bftourname }) => {
   }
 
   return (
-    <Fragment>
-      <h1>detail</h1>
-      <span>{`${info.classes.large}/${info.classes.middle}/${info.classes.small}`}</span>
-      <h2>이름: {info.name}</h2>
-      <p>타입: {info.type}</p>
-      <p>전화: {info.tel}</p>
-      <p>주소: {info.location.road}</p>
-      <img src={info.img.thumbnail} />
-      <span>{info.updated} 기준</span>
-      <Link to="../">뒤로가기</Link>
-    </Fragment>
+    <DetailContainer>
+      <p className="type">{info.type}</p>
+      <p>{`${info.classes.large}/${info.classes.middle}/${info.classes.small}`}</p>
+      <h2>{info.name}</h2>
+      <a href={`tel:${info.tel}`} className="tel">
+        {info.tel}
+      </a>
+      <p className="addr">{info.location.road}</p>
+      <img src={info.img.original} />
+      <p className="updated">{info.updated} 기준</p>
+      <Link to="../" className="back">
+        뒤로가기
+      </Link>
+    </DetailContainer>
   );
 };
 

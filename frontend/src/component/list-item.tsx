@@ -22,7 +22,9 @@ const ListItem: React.FC<ListItemProps> = ({ item }: any) => {
         <span className="type">{type}</span>
         <h3>{name}</h3>
         <p className="tel">{tel}</p>
-        <Link to={`${location.pathname}/${name}`}>자세히</Link>
+        <div className="to-detail">
+          <Link to={`${location.pathname}/${name}`}>자세히</Link>
+        </div>
       </div>
     </ListItemContainer>
   );

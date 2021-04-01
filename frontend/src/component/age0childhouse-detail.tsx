@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, RouteComponentProps } from "@reach/router";
+import { DetailContainer } from "./";
 
 const READ_AGE0CHILDHOUSE = gql`
   query readAge0Childhouse {
@@ -82,21 +83,28 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
   }
 
   return (
-    <Fragment>
-      <h1>detail</h1>
-      <h2>이름: {info.name}</h2>
-      <p>타입: {info.type}</p>
-      <p>전화: {info.tel}</p>
-      <p>홈페이지: {info.homepage}</p>
-      <ul>
+    <DetailContainer>
+      <p className="type">{info.type}</p>
+      <h2>{info.name}</h2>
+      <a href={`tel:${info.tel}`} className="tel">
+        {info.tel}
+      </a>
+      <p className="addr">{info.location.road}</p>
+      <a href={info.homepage} target="_blank">
+        {info.homepage}
+      </a>
+      <h3>정원</h3>
+      <ul className="personnel">
         <li>교직원수: {info.personnel.staff}</li>
         <li>아동정원수: {info.personnel.kid}</li>
       </ul>
-      <p>시간 연장 여부: {info.timeExt}</p>
-
-      <span>{info.updated} 기준</span>
-      <Link to="../">뒤로가기</Link>
-    </Fragment>
+      <h3>시간 연장 여부</h3>
+      <p>{info.timeExt ? "O" : "X"}</p>
+      <p className="updated">{info.updated} 기준</p>
+      <Link to="../" className="back">
+        뒤로가기
+      </Link>
+    </DetailContainer>
   );
 };
 

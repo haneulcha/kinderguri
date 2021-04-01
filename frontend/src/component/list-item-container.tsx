@@ -22,6 +22,7 @@ const Container = styled("section")({
   border: glass.border,
   padding: unit * 1.5,
   paddingBottom: unit * 1,
+  pointer: "cursor",
   "& h3, .tel": {
     textAlign: "center",
     marginBottom: unit * 0.8,
@@ -29,8 +30,7 @@ const Container = styled("section")({
   "& .type": {
     fontWeight: "bold",
   },
-  "& a": {
-    display: "block",
+  "& .to-detail": {
     textAlign: "right",
   },
 });

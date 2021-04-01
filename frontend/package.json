@@ -22,6 +22,7 @@
     "@types/reach__router": "^1.2.6",
     "@types/react": "^16.9.15",
     "@types/react-dom": "^16.9.4",
+    "@types/react-modal": "^3.12.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-emotion": "^11.0.0",
     "cssnano": "^4.1.10",
@@ -47,6 +48,7 @@
     "http-proxy-middleware": "^1.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-loader-spinner": "^4.0.0"
+    "react-loader-spinner": "^4.0.0",
+    "react-modal": "^3.12.1"
   }
 }

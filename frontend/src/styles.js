@@ -6,6 +6,7 @@ export const colors = {
   secondary: "#14cbc4",
   accent: "#e535ab",
   background: "#f7f8fa",
+  overlay: "rgba(0,0,0,0.5)",
   grey: "#d8d9e0",
   text: "#343c5a",
   textSecondary: "#747790",
