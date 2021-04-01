@@ -1,12 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import ListItem from "../component/list-item";
-import DropDown from "../component/dropdown";
-import SearchBar from "../component/search-bar";
+import Loader from "react-loader-spinner";
+import { ListContainer, ListItem, DropDown, SearchBar } from "../component";
 import { filterByType } from "../util";
 import { coordVar } from "../cache";
-import ListContainer from "../component/list-container";
 
 const GET_KINDERGARTENS = gql`
   query GetKindergartenList {
@@ -44,7 +42,12 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
     }
   }, [dataAll, type]);
 
-  if (loadingAll) return <p>Loading</p>;
+  if (loadingAll)
+    return (
+      <div className="loading">
+        <Loader type="Rings" color="#343c5a" height={80} width={80} />
+      </div>
+    );
   if (errorAll) return <p>ERROR</p>;
   if (!dataAll) return <p>Not found</p>;
 

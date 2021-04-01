@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
+import Loader from "react-loader-spinner";
 import { ListContainer, ListItem, DropDown, SearchBar } from "../component";
 import { coordVar } from "../cache";
 import { filterByType } from "../util";
@@ -42,8 +43,12 @@ const Cultural: React.FC<CulturalProps> = ({ children }) => {
       coordVar([...filteredArray]);
     }
   }, [dataAll, type]);
-
-  if (loadingAll) return <p>Loading</p>;
+  if (loadingAll)
+    return (
+      <div className="loading">
+        <Loader type="Rings" color="#343c5a" height={80} width={80} />
+      </div>
+    );
   if (errorAll) return <p>ERROR</p>;
   if (!dataAll) return <p>Not found</p>;
 
