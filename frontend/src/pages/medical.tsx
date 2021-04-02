@@ -3,7 +3,8 @@ import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
 import { filterByType } from "../util";
 import Loader from "react-loader-spinner";
-import { ListContainer, ListItem, DropDown, SearchBar } from "../component";
+import { ListContainer, SearchBar } from "../component";
+import { ListItem, DropDown } from "../container";
 import { coordVar } from "../cache";
 
 const GET_HOPITAL_AT_NIGHT = gql`

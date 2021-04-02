@@ -2,7 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
 import Loader from "react-loader-spinner";
-import { ListContainer, ListItem, DropDown, SearchBar } from "../component";
+import { ListContainer, SearchBar } from "../component";
+import { ListItem, DropDown } from "../container";
 import { filterByType } from "../util";
 import { coordVar } from "../cache";
 

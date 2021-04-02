@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import styled from "@emotion/styled";
 
-import { unit, colors } from "../styles";
-
 export default function ListContainer(props: any) {
   return <Container>{props.children}</Container>;
 }

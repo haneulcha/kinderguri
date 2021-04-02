@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "React";
 import { useLocation, Link, RouteComponentProps } from "@reach/router";
 import { coordVar } from "../cache";
-import { ListItemContainer } from "./";
+import { ListItemContainer } from "../component";
 
 interface ListItemProps extends RouteComponentProps {
   item: any;

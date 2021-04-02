@@ -6,20 +6,23 @@ import Age0ChildHouse from "./age0childhouse";
 import Kindergarten from "./kindergarten";
 import Cultural from "./cultural";
 import Medical from "./medical";
-import ChildHouseDetail from "../component/childhouse-detail";
-import CulturalDetail from "../component/cultural-detail";
-import MedicalDetail from "../component/medical-detail";
-import KindergartenDetail from "../component/kindergarten-detail";
-import Age0ChildhouseDetail from "../component/age0childhouse-detail";
-import Map from "../container/map";
-import PageContainer from "../component/page-container";
+import {
+  ChildHouseDetail,
+  CulturalDetail,
+  MedicalDetail,
+  KindergartenDetail,
+  Age0ChildhouseDetail,
+  Map,
+} from "../container";
+import { NavBar, PageContainer } from "../component";
 
 export const App = () => {
   return (
     <Fragment>
+      <NavBar />
       <PageContainer>
         <Router>
-          {/* <Landing path="/" /> */}
+          <Landing path="/" />
           <ChildHouse path="childhouse">
             <ChildHouseDetail path=":childhousename" />
           </ChildHouse>
