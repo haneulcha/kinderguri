@@ -2,13 +2,13 @@ import React from "react";
 import { Global, css } from "@emotion/react";
 export const unit = 8;
 export const colors = {
-  primary: "#220a82",
-  secondary: "#14cbc4",
+  primary: "#F95738", // orange
+  secondary: "#F4D35E", // yellow
   accent: "#e535ab",
-  background: "#f7f8fa",
+  background: "#FAF0CA", // lemon
   overlay: "rgba(0,0,0,0.5)",
   grey: "#d8d9e0",
-  text: "#343c5a",
+  text: "#0D3B66", // indigo
   textSecondary: "#747790",
 };
 

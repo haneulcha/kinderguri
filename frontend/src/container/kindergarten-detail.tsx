@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, RouteComponentProps } from "@reach/router";
-import { DetailContainer } from "./";
+import { DetailContainer } from "../component";
 
 const READ_KINDERGARTEN = gql`
   query readKindergarten {

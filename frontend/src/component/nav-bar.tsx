@@ -23,7 +23,7 @@ function NavBar(props: any) {
   ) : (
     <MainContainer>
       {pathList.map((item: any, i) => (
-        <NavButton key={`nav-${i}`}>
+        <NavButton key={`nav-${i}`} main>
           <Link to={item.path}>{item.title}</Link>
         </NavButton>
       ))}
@@ -31,10 +31,14 @@ function NavBar(props: any) {
   );
 }
 
+type MainContainerProps = {
+  main?: Boolean;
+};
 const Container = styled("nav")({
   position: "fixed",
   top: unit * 10,
   left: -140,
+  fontWeight: "bold",
   zIndex: 1,
   transition: "left .5s ease",
   "&:hover": {
@@ -43,22 +47,40 @@ const Container = styled("nav")({
 });
 
 const MainContainer = styled("nav")({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  right: "auto",
+  bottom: "auto",
+  marginRight: "-50%",
+  transform: "translate(-50%, -50%)",
+  width: "70%",
+  fontWeight: "bold",
   zIndex: 1,
 });
 
-const NavButton = styled("div")({
-  backgroundColor: colors.primary,
-  color: colors.background,
-  padding: `${unit * 1.5}px ${unit * 3}px ${unit * 1.5}px ${unit * 2}px`,
-  textAlign: "center",
-  borderRadius: `0 ${unit * 2}px ${unit * 2}px 0`,
-  marginBottom: unit * 1,
-  a: {
-    textDecoration: "none",
+const NavButton = styled.div<MainContainerProps>(
+  {
+    textAlign: "center",
+    marginBottom: unit * 1,
+    a: {
+      textDecoration: "none",
+    },
+    "&:hover": {
+      color: colors.text,
+      backgroundColor: colors.secondary,
+    },
   },
-  "&:hover": {
-    backgroundColor: colors.secondary,
-  },
-});
+  (props) => ({
+    color: props.main ? colors.text : colors.background,
+    backgroundColor: props.main ? glass.glassBg : colors.text,
+    padding: props.main
+      ? unit * 2
+      : `${unit * 1.5}px ${unit * 3}px ${unit * 1.5}px ${unit * 2}px`,
+    borderRadius: props.main
+      ? `${unit * 2}px`
+      : `0 ${unit * 2}px ${unit * 2}px 0`,
+  })
+);
 
 export default NavBar;

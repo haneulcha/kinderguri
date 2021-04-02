@@ -8,7 +8,7 @@ interface LandingProps extends RouteComponentProps {
 }
 const Landing: React.FC<LandingProps> = ({ children }) => {
   return (
-    <div>
+    <>
       <NavBar main />
       {/* <header>
           <h1>Kinderguri</h1>
@@ -21,7 +21,7 @@ const Landing: React.FC<LandingProps> = ({ children }) => {
             <ContactSupportIcon />
           </a>
         </div> */}
-    </div>
+    </>
   );
 };
 
