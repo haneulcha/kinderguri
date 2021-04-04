@@ -8,3 +8,10 @@ export const extractTypes = (arr: any[]): any => {
   const typesInSet = new Set([...types]);
   return Array.from(typesInSet);
 };
+
+export const findMatches = (items: any[], value: string) => {
+  return items.filter((item) => {
+    const regex = new RegExp(value, "gi");
+    return item.name.match(regex);
+  });
+};

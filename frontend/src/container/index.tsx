@@ -7,3 +7,4 @@ export { default as Age0ChildhouseDetail } from "./age0childhouse-detail";
 
 export { default as DropDown } from "../container/dropdown";
 export { default as ListItem } from "../container/list-item";
+export { default as SearchInput } from "../container/search-input";
