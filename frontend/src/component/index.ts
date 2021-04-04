@@ -4,4 +4,6 @@ export { default as ListItemContainer } from "./list-item-container";
 export { default as DetailContainer } from "./detail-container";
 export { default as SearchBar } from "./search-bar";
 export { default as NavBar } from "./nav-bar";
+export { default as Header } from "./header";
+export { default as Footer } from "./footer";
 export { default as NavButton } from "./nav-button";

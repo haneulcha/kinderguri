@@ -24,7 +24,7 @@ export const GlobalStyles = () => {
     <Global
       styles={css`      
         import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-        @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+        
         * {
           box-sizing: border-box;
         }
@@ -72,6 +72,7 @@ export const GlobalStyles = () => {
         }
         a {
           color: unset;
+          text-decoration: none;
         }
         select {
           font-family: "Spoqa Han Sans Neo";

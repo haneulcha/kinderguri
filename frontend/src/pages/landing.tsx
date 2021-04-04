@@ -10,12 +10,8 @@ const Landing: React.FC<LandingProps> = ({ children }) => {
   return (
     <>
       <NavBar main />
-      {/* <header>
-          <h1>Kinderguri</h1>
-          <h2>구리시 소재 유치원·어린이집</h2>
-        </header> */}
-      {/* <Search setList={setList} />
-        <List list={list} markingFn={setMapMarking} />
+      {/* 
+        
         <div className="contact">
           <a href="http://haneulcha.com" target="_blank">
             <ContactSupportIcon />

@@ -15,17 +15,17 @@ function NavBar(props: any) {
   return !props.main ? (
     <Container>
       {pathList.map((item: any, i) => (
-        <NavButton key={`nav-${i}`}>
-          <Link to={item.path}>{item.title}</Link>
-        </NavButton>
+        <Link to={item.path} key={`nav-${i}`}>
+          <NavButton>{item.title}</NavButton>
+        </Link>
       ))}
     </Container>
   ) : (
     <MainContainer>
       {pathList.map((item: any, i) => (
-        <NavButton key={`nav-${i}`} main>
-          <Link to={item.path}>{item.title}</Link>
-        </NavButton>
+        <Link to={item.path} key={`nav-${i}`}>
+          <NavButton main>{item.title}</NavButton>
+        </Link>
       ))}
     </MainContainer>
   );
@@ -63,9 +63,6 @@ const NavButton = styled.div<MainContainerProps>(
   {
     textAlign: "center",
     marginBottom: unit * 1,
-    a: {
-      textDecoration: "none",
-    },
     "&:hover": {
       color: colors.text,
       backgroundColor: colors.secondary,

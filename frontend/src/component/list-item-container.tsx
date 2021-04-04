@@ -23,14 +23,18 @@ const Container = styled("section")({
   padding: unit * 1.5,
   paddingBottom: unit * 1,
   pointer: "cursor",
+  h3: {
+    fontSize: unit * 2.5,
+  },
   "& h3, .tel": {
     textAlign: "center",
-    marginBottom: unit * 0.8,
+    // marginBottom: unit * 0.8,
   },
   "& .type": {
     fontWeight: "bold",
   },
   "& .to-detail": {
     textAlign: "right",
+    fontSize: unit * 1.5,
   },
 });

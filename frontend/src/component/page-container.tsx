@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-
 import { unit, colors, glass } from "../styles";
 
 export default function PageContainer(props: any) {
@@ -13,15 +12,17 @@ const Container = styled("main")({
   flexGrow: 1,
   position: "absolute",
   right: 0,
-  height: "100%",
   minWidth: 400,
   zIndex: 1,
   h1: {
-    margin: `${unit * 4}px 0`,
+    margin: `${unit * 3.5}px 0`,
     textAlign: "center",
   },
   backgroundColor: glass.glassBg,
   boxShadow: glass.glassShadow,
   backdropFilter: glass.backdropFilter,
   WebkitBackdropFilter: glass.backdropFilter,
+  a: {
+    textDecoration: "underline",
+  },
 });

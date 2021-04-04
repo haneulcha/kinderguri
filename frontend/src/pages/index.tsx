@@ -14,11 +14,12 @@ import {
   Age0ChildhouseDetail,
   Map,
 } from "../container";
-import { NavBar, PageContainer } from "../component";
+import { Header, Footer, NavBar, PageContainer } from "../component";
 
 export const App = () => {
   return (
     <Fragment>
+      <Header />
       <NavBar />
       <PageContainer>
         <Router>
@@ -40,6 +41,7 @@ export const App = () => {
           </Cultural>
         </Router>
       </PageContainer>
+      <Footer />
       <Map />
     </Fragment>
   );
