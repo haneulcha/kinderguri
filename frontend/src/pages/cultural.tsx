@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import Loader from "react-loader-spinner";
 import { ListContainer, SearchBar } from "../component";
-import { ListItem, DropDown } from "../container";
+import { ListItem, DropDown, SearchInput } from "../container";
 import { coordVar } from "../cache";
-import { filterByType } from "../util";
+import { filterByType, findMatches } from "../util";
+import Loader from "react-loader-spinner";
 
 const GET_BARREIRFREE = gql`
   query GetBarrierFreeList {
@@ -30,6 +30,7 @@ const Cultural: React.FC<CulturalProps> = ({ children }) => {
     GET_BARREIRFREE
   );
   const [type, setType] = useState<string>("");
+  const [keyword, setKeyword] = useState<string>("");
 
   useEffect(() => {
     if (dataAll) {
@@ -44,6 +45,21 @@ const Cultural: React.FC<CulturalProps> = ({ children }) => {
       coordVar([...filteredArray]);
     }
   }, [dataAll, type]);
+
+  useEffect(() => {
+    if (keyword.length) {
+      const filteredArray = findMatches(dataAll.barrierFreeTour, keyword).map(
+        (item: any) => {
+          return {
+            name: item.name,
+            location: { long: item.location.long, lat: item.location.lat },
+          };
+        }
+      );
+      coordVar([...filteredArray]);
+    }
+  }, [keyword]);
+
   if (loadingAll)
     return (
       <div className="loading">
@@ -55,21 +71,30 @@ const Cultural: React.FC<CulturalProps> = ({ children }) => {
 
   return (
     <>
-      <h1>구리 인근 무장애 여행</h1>
+      <h2>구리 인근 무장애 여행</h2>
       <SearchBar>
         <DropDown
           name="무장애(Barrier-free) 여행"
           list={!loadingAll && dataAll.barrierFreeTour}
           setOption={setType}
         />
+        <SearchInput setKeyword={setKeyword} />
       </SearchBar>
       <ListContainer>
+        {keyword.length > 0 &&
+          findMatches(
+            dataAll.barrierFreeTour,
+            keyword
+          ).map((hitem: any, i: number) => (
+            <ListItem item={hitem} key={`list-${i}`} />
+          ))}
         {dataAll.barrierFreeTour &&
+          !keyword.length &&
           filterByType(
             dataAll.barrierFreeTour,
             type
-          ).map((tour: any, i: number) => (
-            <ListItem item={tour} key={`list-${i}`} />
+          ).map((item: any, i: number) => (
+            <ListItem item={item} key={`list-${i}`} />
           ))}
       </ListContainer>
       {children}

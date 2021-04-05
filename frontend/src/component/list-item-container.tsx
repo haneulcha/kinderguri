@@ -32,6 +32,7 @@ const Container = styled("section")({
   },
   "& .type": {
     fontWeight: "bold",
+    fontSize: unit * 1.75,
   },
   "& .to-detail": {
     textAlign: "right",

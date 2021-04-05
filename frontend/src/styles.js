@@ -91,10 +91,12 @@ export const GlobalStyles = () => {
         .loading {
           margin: 0 auto;
           width: 100%;
-          text-align: center;
-          top: 45%;
-          position: absolute;
+          height: 92vh;
+          padding-top: 40vh;
+          text-align: center;         
         }
+  
+
       `}
     />
   );

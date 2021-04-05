@@ -47,16 +47,28 @@ const Container = styled("nav")({
 });
 
 const MainContainer = styled("nav")({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  right: "auto",
-  bottom: "auto",
-  marginRight: "-50%",
-  transform: "translate(-50%, -50%)",
-  width: "70%",
+  width: "100%",
+  height: "92vh",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
   fontWeight: "bold",
   zIndex: 1,
+  a: {
+    width: "80%",
+    textDecoration: "none",
+  },
+  // position: "absolute",
+  // top: "50%",
+  // left: "50%",
+  // right: "auto",
+  // bottom: "auto",
+  // marginRight: "-50%",
+  // transform: "translate(-50%, -50%)",
+  // width: "70%",
+  // fontWeight: "bold",
+  // zIndex: 1,
 });
 
 const NavButton = styled.div<MainContainerProps>(

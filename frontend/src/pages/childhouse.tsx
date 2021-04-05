@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import Loader from "react-loader-spinner";
 import { ListContainer, SearchBar } from "../component";
 import { ListItem, DropDown, SearchInput } from "../container";
 import { coordVar } from "../cache";
 import { filterByType, findMatches } from "../util";
+import Loader from "react-loader-spinner";
 
 const GET_CHILDHOUSES = gql`
   query GetChildHousesList {
@@ -72,30 +72,30 @@ const ChildHouse: React.FC<ChildHouseProps> = ({ children }) => {
   console.log(keyword.length);
   return (
     <>
-      <h1>어린이집</h1>
+      <h2>어린이집</h2>
       <SearchBar>
-        <SearchInput setKeyword={setKeyword} />
         <DropDown
           name="어린이집"
           list={!loadingAll && dataAll.childHouses}
           setOption={setType}
         />
+        <SearchInput setKeyword={setKeyword} />
       </SearchBar>
       <ListContainer>
         {keyword.length > 0 &&
           findMatches(
             dataAll.childHouses,
             keyword
-          ).map((house: any, i: number) => (
-            <ListItem item={house} key={`list-${i}`} />
+          ).map((item: any, i: number) => (
+            <ListItem item={item} key={`list-${i}`} />
           ))}
         {dataAll.childHouses &&
           !keyword.length &&
           filterByType(
             dataAll.childHouses,
             type
-          ).map((house: any, i: number) => (
-            <ListItem item={house} key={`list-${i}`} />
+          ).map((item: any, i: number) => (
+            <ListItem item={item} key={`list-${i}`} />
           ))}
       </ListContainer>
       {children}

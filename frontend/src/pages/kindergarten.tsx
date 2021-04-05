@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import Loader from "react-loader-spinner";
 import { ListContainer, SearchBar } from "../component";
-import { ListItem, DropDown } from "../container";
-import { filterByType } from "../util";
+import { ListItem, DropDown, SearchInput } from "../container";
 import { coordVar } from "../cache";
+import { filterByType, findMatches } from "../util";
+import Loader from "react-loader-spinner";
 
 const GET_KINDERGARTENS = gql`
   query GetKindergartenList {
@@ -28,6 +28,7 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
     GET_KINDERGARTENS
   );
   const [type, setType] = useState<string>("");
+  const [keyword, setKeyword] = useState<string>("");
 
   useEffect(() => {
     if (dataAll) {
@@ -43,6 +44,20 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
     }
   }, [dataAll, type]);
 
+  useEffect(() => {
+    if (keyword.length) {
+      const filteredArray = findMatches(dataAll.kindergartens, keyword).map(
+        (item: any) => {
+          return {
+            name: item.name,
+            location: { long: item.location.long, lat: item.location.lat },
+          };
+        }
+      );
+      coordVar([...filteredArray]);
+    }
+  }, [keyword]);
+
   if (loadingAll)
     return (
       <div className="loading">
@@ -54,21 +69,30 @@ const Kindergarten: React.FC<KindergartenProps> = ({ children }) => {
 
   return (
     <>
-      <h1>유치원</h1>
+      <h2>유치원</h2>
       <SearchBar>
         <DropDown
           name="유치원"
           list={!loadingAll && dataAll.kindergartens}
           setOption={setType}
         />
+        <SearchInput setKeyword={setKeyword} />
       </SearchBar>
       <ListContainer>
+        {keyword.length > 0 &&
+          findMatches(
+            dataAll.kindergartens,
+            keyword
+          ).map((houitem: any, i: number) => (
+            <ListItem item={houitem} key={`list-${i}`} />
+          ))}
         {dataAll.kindergartens &&
+          !keyword.length &&
           filterByType(
             dataAll.kindergartens,
             type
-          ).map((kg: any, i: number) => (
-            <ListItem item={kg} key={`list-${i}`} />
+          ).map((item: any, i: number) => (
+            <ListItem item={item} key={`list-${i}`} />
           ))}
       </ListContainer>
       {children}

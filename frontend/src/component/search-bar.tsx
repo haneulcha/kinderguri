@@ -9,11 +9,13 @@ export default function SearchBar(props: any) {
 
 const Container = styled("div")({
   textAlign: "center",
-  margin: `${unit * 2}px 0`,
-  select: {
+  marginBottom: unit * 2,
+  form: {
+    display: "inline-block",
+  },
+  "select, input": {
     fontFamily: "Spoqa Han Sans Neo",
     fontSize: "90%",
-    width: "40%",
     height: unit * 5,
     marginRight: unit * 1.5,
     padding: unit * 1,

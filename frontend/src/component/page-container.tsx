@@ -12,10 +12,11 @@ const Container = styled("main")({
   flexGrow: 1,
   position: "absolute",
   right: 0,
-  minWidth: 400,
+  paddingTop: 57,
+  minWidth: 380,
   zIndex: 1,
-  h1: {
-    margin: `${unit * 3.5}px 0`,
+  h2: {
+    margin: `${unit * 2}px 0`,
     textAlign: "center",
   },
   backgroundColor: glass.glassBg,

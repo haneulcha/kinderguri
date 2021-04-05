@@ -18,7 +18,11 @@ const SearchInput: React.FC<SearchInputProps> = ({ setKeyword }) => {
 
   return (
     <form>
-      <input value={value} onChange={handleChange}></input>
+      <input
+        value={value}
+        onChange={handleChange}
+        placeholder="검색어 입력"
+      ></input>
     </form>
   );
 };

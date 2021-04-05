@@ -12,6 +12,9 @@ function Header(props: any) {
 }
 
 const HeaderContainer = styled("header")({
+  position: "fixed",
+  top: 0,
+  left: 0,
   display: "flex",
   alignItems: "baseline",
   width: "100%",
@@ -23,6 +26,7 @@ const HeaderContainer = styled("header")({
     marginLeft: unit * 1,
     fontSize: unit * 2,
   },
+  zIndex: 2,
 });
 
 export default Header;

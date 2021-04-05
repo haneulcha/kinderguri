@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import { filterByType } from "../util";
-import Loader from "react-loader-spinner";
 import { ListContainer, SearchBar } from "../component";
-import { ListItem, DropDown } from "../container";
+import { ListItem, DropDown, SearchInput } from "../container";
 import { coordVar } from "../cache";
+import { filterByType, findMatches } from "../util";
+import Loader from "react-loader-spinner";
 
 const GET_HOPITAL_AT_NIGHT = gql`
   query GetHospitalAtNightList {
@@ -28,6 +28,7 @@ const Medical: React.FC<MedicalProps> = ({ children }) => {
     GET_HOPITAL_AT_NIGHT
   );
   const [type, setType] = useState<string>("");
+  const [keyword, setKeyword] = useState<string>("");
 
   useEffect(() => {
     if (dataAll) {
@@ -43,6 +44,20 @@ const Medical: React.FC<MedicalProps> = ({ children }) => {
     }
   }, [dataAll, type]);
 
+  useEffect(() => {
+    if (keyword.length) {
+      const filteredArray = findMatches(dataAll.hospitalsAtNight, keyword).map(
+        (item: any) => {
+          return {
+            name: item.name,
+            location: { long: item.location.long, lat: item.location.lat },
+          };
+        }
+      );
+      coordVar([...filteredArray]);
+    }
+  }, [keyword]);
+
   if (loadingAll)
     return (
       <div className="loading">
@@ -54,16 +69,25 @@ const Medical: React.FC<MedicalProps> = ({ children }) => {
 
   return (
     <>
-      <h1>소아 야간진료 병원</h1>
+      <h2>소아 야간진료 병원</h2>
       <SearchBar>
         <DropDown
           name="소아 야간진료 병원"
           list={!loadingAll && dataAll.hospitalsAtNight}
           setOption={setType}
         />
+        <SearchInput setKeyword={setKeyword} />
       </SearchBar>
       <ListContainer>
+        {keyword.length > 0 &&
+          findMatches(
+            dataAll.hospitalsAtNight,
+            keyword
+          ).map((item: any, i: number) => (
+            <ListItem item={item} key={`list-${i}`} />
+          ))}
         {dataAll.hospitalsAtNight &&
+          !keyword.length &&
           filterByType(
             dataAll.hospitalsAtNight,
             type
