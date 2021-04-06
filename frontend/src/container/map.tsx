@@ -22,6 +22,7 @@ interface MapProps extends RouteComponentProps {}
 const Map: React.FC<MapProps> = () => {
   const { data, loading, error } = useQuery(GET_COORDS);
   const [mapObj, setMapObj] = useState();
+  const [homeTarget, setHomeTarget] = useState<Element | null>();
   let markerList: any = [];
   let infoWindowList: any = [];
 
@@ -36,6 +37,38 @@ const Map: React.FC<MapProps> = () => {
       infowindow.close();
     };
   }
+
+  const handler = (evt: any) => {
+    const latlng = evt.latLng;
+    let position = new window.kakao.maps.LatLng(
+      latlng.getLat(),
+      latlng.getLng()
+    );
+
+    var customOverlay = new window.kakao.maps.CustomOverlay({
+      position: position,
+      content: `<div class="sethome-overlay"><p>집으로</p><p class="sethome">설정</p></div>`,
+      xAnchor: 0.3,
+      yAnchor: 0.91,
+      clickable: true,
+    });
+
+    customOverlay.setMap(mapObj);
+    setHomeTarget(document.querySelector(".sethome"));
+  };
+
+  if (mapObj) {
+    window.kakao.maps.event.addListener(mapObj, "rightclick", handler);
+  }
+
+  useEffect(() => {
+    if (homeTarget) {
+      const setHome = (evt: any) => {
+        console.log("집 설정");
+      };
+      homeTarget?.addEventListener("click", setHome);
+    }
+  }, [homeTarget]);
 
   useEffect(() => {
     if (!data.coord.length) return;
@@ -100,7 +133,10 @@ const Map: React.FC<MapProps> = () => {
     }
 
     return () => {
-      markerList.map((item: any) => item.setMap(null));
+      // eventlistener remove
+      markerList.map((item: any) => {
+        item.setMap(null);
+      });
       markerList = [];
       if (infoWindowList.length) {
         infoWindowList.map((item: any) => item.close());

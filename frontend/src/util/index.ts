@@ -15,3 +15,14 @@ export const findMatches = (items: any[], value: string) => {
     return item.name.match(regex);
   });
 };
+
+export const setInLS = (key: string, value: any) => {
+  const stringified = JSON.stringify(value);
+  localStorage.setItem(key, stringified);
+  console.log(stringified);
+};
+
+export const getFromLS = (key: string) => {
+  const value = localStorage.getItem(key) || "";
+  return JSON.parse(value);
+};

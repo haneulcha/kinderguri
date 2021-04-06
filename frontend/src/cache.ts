@@ -5,6 +5,7 @@ interface Coord {
   location: { long: number; lat: number };
 }
 export const coordVar = makeVar<Coord[]>([]);
+export const existsHomeCoord = makeVar<boolean>(!!localStorage.getItem("home"));
 
 export const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {

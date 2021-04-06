@@ -95,7 +95,9 @@ export const GlobalStyles = () => {
           padding-top: 40vh;
           text-align: center;         
         }
-  
+        .sethome-overlay{
+          background-color: white;
+        }
 
       `}
     />
