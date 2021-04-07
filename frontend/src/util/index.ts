@@ -19,7 +19,6 @@ export const findMatches = (items: any[], value: string) => {
 export const setInLS = (key: string, value: any) => {
   const stringified = JSON.stringify(value);
   localStorage.setItem(key, stringified);
-  console.log(stringified);
 };
 
 export const getFromLS = (key: string) => {

@@ -1,8 +1,10 @@
 /*global kakao*/
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
 import dotenv from "dotenv";
+import { setInLS } from "../util";
+import { homeCoordVar } from "../cache";
 dotenv.config();
 
 declare global {
@@ -17,12 +19,21 @@ const GET_COORDS = gql`
   }
 `;
 
+const GET_HOME = gql`
+  query GetHome {
+    homeCoord @client
+  }
+`;
+
 interface MapProps extends RouteComponentProps {}
 
 const Map: React.FC<MapProps> = () => {
   const { data, loading, error } = useQuery(GET_COORDS);
+  const { data: myhome } = useQuery(GET_HOME);
   const [mapObj, setMapObj] = useState();
-  const [homeTarget, setHomeTarget] = useState<Element | null>();
+  const [overlayOn, setOverlayOn] = useState(false);
+  const homeOverlay = useRef<any>();
+  const homeMarker = useRef<any>();
   let markerList: any = [];
   let infoWindowList: any = [];
 
@@ -38,7 +49,7 @@ const Map: React.FC<MapProps> = () => {
     };
   }
 
-  const handler = (evt: any) => {
+  const askSetHomeHandler = (evt: any) => {
     const latlng = evt.latLng;
     let position = new window.kakao.maps.LatLng(
       latlng.getLat(),
@@ -54,22 +65,35 @@ const Map: React.FC<MapProps> = () => {
     });
 
     customOverlay.setMap(mapObj);
-    setHomeTarget(document.querySelector(".sethome"));
+    console.log("customOverlay", customOverlay);
+    setOverlayOn(true);
+    homeOverlay.current = {
+      customOverlay,
+      lat: latlng.getLat(),
+      long: latlng.getLng(),
+    };
   };
 
-  if (mapObj) {
-    window.kakao.maps.event.addListener(mapObj, "rightclick", handler);
-  }
-
+  /* 오른쪽 클릭으로 집 설정 시 */
   useEffect(() => {
-    if (homeTarget) {
+    if (overlayOn) {
       const setHome = (evt: any) => {
-        console.log("집 설정");
-      };
-      homeTarget?.addEventListener("click", setHome);
-    }
-  }, [homeTarget]);
+        console.log("집으로 설정");
+        const { customOverlay, lat, long } = homeOverlay.current;
+        setInLS("home", { lat, long });
+        homeCoordVar({ lat, long });
 
+        console.log("설정 완료");
+        customOverlay.setMap(null);
+
+        homeOverlay.current = undefined;
+        setOverlayOn(false);
+      };
+      document.querySelector(".sethome")?.addEventListener("click", setHome);
+    }
+  }, [overlayOn]);
+
+  /* 리스트에서 받은 좌표들 */
   useEffect(() => {
     if (!data.coord.length) return;
 
@@ -145,6 +169,53 @@ const Map: React.FC<MapProps> = () => {
     };
   }, [data]);
 
+  /* 마이홈 */
+  useEffect(() => {
+    if (mapObj && myhome) {
+      if (homeMarker.current) {
+        homeMarker.current.setMap(null);
+      }
+      const { lat, long } = myhome.homeCoord;
+      var imageSrc = "../kinderguri-favicon.png", // 마커이미지의 주소입니다
+        imageSize = new window.kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+        imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+      var markerImage = new window.kakao.maps.MarkerImage(
+        imageSrc,
+        imageSize,
+        imageOption
+      );
+      const markerPosition = new window.kakao.maps.LatLng(lat, long);
+
+      homeMarker.current = new window.kakao.maps.Marker({
+        position: markerPosition,
+        image: markerImage,
+      });
+      console.log("home", myhome);
+      homeMarker.current.setMap(mapObj);
+    }
+  }, [mapObj, myhome]);
+
+  /* 오른쪽 클릭 이벤트 등록 */
+  useEffect(() => {
+    if (mapObj) {
+      window.kakao.maps.event.addListener(
+        mapObj,
+        "rightclick",
+        askSetHomeHandler
+      );
+
+      return () => {
+        window.kakao.maps.event.removeListener(
+          mapObj,
+          "rightclick",
+          askSetHomeHandler
+        );
+      };
+    }
+  }, [mapObj]);
+
+  /* 지도 초기화 */
   useEffect(() => {
     const script = document.createElement("script");
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY_DEV}&autoload=false`;
@@ -161,6 +232,7 @@ const Map: React.FC<MapProps> = () => {
           keyboardShortcuts: true,
         };
         const map = new window.kakao.maps.Map(container, options);
+
         setMapObj(map);
       });
     };
@@ -168,9 +240,7 @@ const Map: React.FC<MapProps> = () => {
 
   if (loading) return <p>LOADING</p>;
   if (error) return <p>ERROR: {error.message}</p>;
-  // if (data) {
-  //   console.log("coord", data);
-  // }
+
   return (
     <Fragment>
       <div id="map" className="map"></div>

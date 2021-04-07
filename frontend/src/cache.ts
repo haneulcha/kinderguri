@@ -1,11 +1,17 @@
 import { InMemoryCache, Reference, makeVar } from "@apollo/client";
+import { getFromLS } from "./util";
 
-interface Coord {
+interface CoordT {
   name: string;
   location: { long: number; lat: number };
 }
-export const coordVar = makeVar<Coord[]>([]);
-export const existsHomeCoord = makeVar<boolean>(!!localStorage.getItem("home"));
+
+interface HomeCoordT {
+  lat?: number;
+  long?: number;
+}
+export const coordVar = makeVar<CoordT[]>([]);
+export const homeCoordVar = makeVar<HomeCoordT>(getFromLS("home"));
 
 export const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
@@ -14,6 +20,11 @@ export const cache: InMemoryCache = new InMemoryCache({
         coord: {
           read() {
             return coordVar();
+          },
+        },
+        homeCoord: {
+          read() {
+            return homeCoordVar();
           },
         },
       },
