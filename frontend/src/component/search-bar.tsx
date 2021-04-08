@@ -16,6 +16,8 @@ const Container = styled("div")({
   "select, input": {
     fontFamily: "Spoqa Han Sans Neo",
     fontSize: "90%",
+    color: colors.text,
+    minWidth: "6rem",
     height: unit * 5,
     marginRight: unit * 1.5,
     padding: unit * 1,
@@ -32,9 +34,10 @@ const Container = styled("div")({
   },
   "& .select-wrapper::after": {
     content: '"▼"',
-    top: unit * 1,
-    right: "35%",
+    top: "0.65rem",
+    right: "25%",
     position: "absolute",
+    fontSize: "0.8rem",
   },
   option: {
     background: glass.glassBg,

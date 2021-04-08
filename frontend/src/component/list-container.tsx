@@ -10,7 +10,7 @@ const Container = styled("div")({
   flexDirection: "column",
   flexGrow: 1,
   width: "100%",
-  height: "74.2vh",
+  height: "78.5vh",
   overflowY: "scroll",
   overflowScrolling: "touch",
   WebkitOverflowScrolling: "touch",

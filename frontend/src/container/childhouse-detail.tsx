@@ -47,7 +47,7 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
       room: 0,
       playground: 0,
       cctv: 0,
-      shuttle: 0,
+      shuttle: false,
     },
     homepage: "",
     location: {
@@ -109,7 +109,7 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
         <li>cctv: {info.facility.cctv}</li>
         <li>놀이터: {info.facility.playground}</li>
         <li>보육실: {info.facility.room}</li>
-        <li>셔틀버스: {info.facility.shuttle}</li>
+        <li>셔틀버스: {info.facility.shuttle ? "O" : "X"}</li>
       </ul>
       <p className="updated">{info.updated} 기준</p>
       <Link to="../" className="back">

@@ -40,7 +40,7 @@ const Container = styled("section")({
   position: "relative",
   padding: unit * 3,
   minWidth: 450,
-  backgroundColor: colors.background,
+  backgroundColor: colors.paper,
   borderRadius: unit * 1,
   color: colors.text,
   "h2, h3": {

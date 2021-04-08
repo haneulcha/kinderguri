@@ -6,6 +6,7 @@ export const colors = {
   secondary: "#F4D35E", // yellow
   accent: "#e535ab",
   background: "#FAF0CA", // lemon
+  paper: "#FCF9ED",
   overlay: "rgba(0,0,0,0.5)",
   grey: "#d8d9e0",
   text: "#0D3B66", // indigo
@@ -120,23 +121,23 @@ export const GlobalStyles = () => {
           left: -12px;
           // margin-left: -115px;          
           border-radius: 50% 50% 50% 0;
-          border: 4px solid ${colors.primary};
-          width: 26px;
-          height: 26px;
+          border: 4px solid ${colors.text};
+          width: 30px;
+          height: 30px;
           transform: rotate(-45deg);
         }
         
         .home-marker::after {
           position: absolute;
           content: '';
-          width: 10px;
-          height: 10px;
+          width: 15px;
+          height: 15px;
           border-radius: 50%;
-          top: 50%;
-          left: 50%;
-          margin-left: -5px;
-          margin-top: -5px;
-          background-color: ${colors.primary};
+          top: 35%;
+          left: 39%;
+          margin-left: -6px;
+          margin-top: -4px;
+          background-color: ${colors.text};
         }
 
       `}

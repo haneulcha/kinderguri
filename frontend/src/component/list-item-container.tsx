@@ -22,7 +22,7 @@ const Container = styled("section")({
   border: glass.border,
   padding: unit * 1.5,
   paddingBottom: unit * 1,
-  pointer: "cursor",
+  cursor: "pointer",
   h3: {
     fontSize: unit * 2.5,
   },

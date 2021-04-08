@@ -12,8 +12,8 @@ const Container = styled("main")({
   flexGrow: 1,
   position: "absolute",
   right: 0,
-  paddingTop: 57,
   minWidth: 380,
+  height: "93.5vh",
   zIndex: 1,
   h2: {
     margin: `${unit * 2}px 0`,
@@ -25,5 +25,10 @@ const Container = styled("main")({
   WebkitBackdropFilter: glass.backdropFilter,
   a: {
     textDecoration: "underline",
+  },
+  "& p.sethome-tip": {
+    width: "80%",
+    margin: "auto",
+    fontSize: "0.9rem",
   },
 });
