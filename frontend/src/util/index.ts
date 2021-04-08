@@ -22,6 +22,6 @@ export const setInLS = (key: string, value: any) => {
 };
 
 export const getFromLS = (key: string) => {
-  const value = localStorage.getItem(key) || "";
+  const value = localStorage.getItem(key) || "null";
   return JSON.parse(value);
 };

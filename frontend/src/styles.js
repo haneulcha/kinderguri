@@ -96,7 +96,47 @@ export const GlobalStyles = () => {
           text-align: center;         
         }
         .sethome-overlay{
-          background-color: white;
+          width: 6rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          border-radius: 1rem;
+          background-color: ${colors.secondary};
+          color: ${colors.text};
+          text-align: center;
+          cursor: pointer;
+        }
+        .sethome-overlay .sethome {
+          width: 100%;
+          font-size: 0.9rem;
+        }
+        .sethome-overlay:hover {
+          background-color: ${colors.primary};
+          color: white;          
+        }
+        .home-marker {
+          position: absolute;
+          top: -27px;
+          left: -12px;
+          // margin-left: -115px;          
+          border-radius: 50% 50% 50% 0;
+          border: 4px solid ${colors.primary};
+          width: 26px;
+          height: 26px;
+          transform: rotate(-45deg);
+        }
+        
+        .home-marker::after {
+          position: absolute;
+          content: '';
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          margin-left: -5px;
+          margin-top: -5px;
+          background-color: ${colors.primary};
         }
 
       `}

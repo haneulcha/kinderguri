@@ -5,6 +5,7 @@ import { RouteComponentProps } from "@reach/router";
 import dotenv from "dotenv";
 import { setInLS } from "../util";
 import { homeCoordVar } from "../cache";
+
 dotenv.config();
 
 declare global {
@@ -58,14 +59,13 @@ const Map: React.FC<MapProps> = () => {
 
     var customOverlay = new window.kakao.maps.CustomOverlay({
       position: position,
-      content: `<div class="sethome-overlay"><p>집으로</p><p class="sethome">설정</p></div>`,
+      content: `<div class="sethome-overlay"><p class="sethome">집으로 설정</p></div>`,
       xAnchor: 0.3,
       yAnchor: 0.91,
       clickable: true,
     });
 
     customOverlay.setMap(mapObj);
-    console.log("customOverlay", customOverlay);
     setOverlayOn(true);
     homeOverlay.current = {
       customOverlay,
@@ -73,25 +73,6 @@ const Map: React.FC<MapProps> = () => {
       long: latlng.getLng(),
     };
   };
-
-  /* 오른쪽 클릭으로 집 설정 시 */
-  useEffect(() => {
-    if (overlayOn) {
-      const setHome = (evt: any) => {
-        console.log("집으로 설정");
-        const { customOverlay, lat, long } = homeOverlay.current;
-        setInLS("home", { lat, long });
-        homeCoordVar({ lat, long });
-
-        console.log("설정 완료");
-        customOverlay.setMap(null);
-
-        homeOverlay.current = undefined;
-        setOverlayOn(false);
-      };
-      document.querySelector(".sethome")?.addEventListener("click", setHome);
-    }
-  }, [overlayOn]);
 
   /* 리스트에서 받은 좌표들 */
   useEffect(() => {
@@ -169,32 +150,56 @@ const Map: React.FC<MapProps> = () => {
     };
   }, [data]);
 
-  /* 마이홈 */
+  /* 마이홈 설정 */
   useEffect(() => {
-    if (mapObj && myhome) {
+    if (mapObj && myhome.homeCoord) {
       if (homeMarker.current) {
         homeMarker.current.setMap(null);
       }
       const { lat, long } = myhome.homeCoord;
-      var imageSrc = "../kinderguri-favicon.png", // 마커이미지의 주소입니다
-        imageSize = new window.kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-        imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-      var markerImage = new window.kakao.maps.MarkerImage(
-        imageSrc,
-        imageSize,
-        imageOption
-      );
-      const markerPosition = new window.kakao.maps.LatLng(lat, long);
+      const content = `<div class="home-marker"></div>`;
+      const position = new window.kakao.maps.LatLng(lat, long);
 
-      homeMarker.current = new window.kakao.maps.Marker({
-        position: markerPosition,
-        image: markerImage,
+      homeMarker.current = new window.kakao.maps.CustomOverlay({
+        position,
+        content,
       });
-      console.log("home", myhome);
+
       homeMarker.current.setMap(mapObj);
     }
   }, [mapObj, myhome]);
+
+  /* 오른쪽 클릭 이후 오버레이 팝업 옵션 - 집 위치 변경 OR 오버레이 닫기*/
+  useEffect(() => {
+    if (overlayOn) {
+      const closeOverlay = (evt: any) => {
+        const { customOverlay } = homeOverlay.current;
+        customOverlay.setMap(null);
+        homeOverlay.current = undefined;
+        setOverlayOn(false);
+      };
+
+      const setHome = (evt: any) => {
+        evt.stopPropagation();
+        console.log("집으로 설정");
+        const { customOverlay, lat, long } = homeOverlay.current;
+        setInLS("home", { lat, long });
+        homeCoordVar({ lat, long });
+        console.log("설정 완료");
+
+        customOverlay.setMap(null);
+        homeOverlay.current = undefined;
+        setOverlayOn(false);
+      };
+      document.querySelector(".sethome")?.addEventListener("click", setHome);
+      window.kakao.maps.event.addListener(mapObj, "click", closeOverlay);
+
+      return () => {
+        window.kakao.maps.event.removeListener(mapObj, "click", closeOverlay);
+      };
+    }
+  }, [overlayOn]);
 
   /* 오른쪽 클릭 이벤트 등록 */
   useEffect(() => {
