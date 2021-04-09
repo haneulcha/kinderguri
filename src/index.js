@@ -18,10 +18,6 @@ dotenv.config();
 
   app.use(express.static(path.join(__dirname, "dist")));
 
-  app.get("/*", function (req, res) {
-    res.sendFile(path.join(__dirname, "dist", "index.html"));
-  });
-
   const resolvers = {
     Query: {
       age0Kindergartens: async (_, __, { dataSources }) =>
@@ -57,8 +53,12 @@ dotenv.config();
 
   server.applyMiddleware({ app });
 
+  app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "dist", "index.html"));
+  });
+
   await new Promise((resolve) =>
-    app.listen({ port: process.env.PORT || 2000 }, resolve)
+    app.listen({ port: process.env.PORT || 2001 }, resolve)
   );
   console.log(`🚀 Server ready at http://localhost:2000${server.graphqlPath}`);
   return { server, app };
