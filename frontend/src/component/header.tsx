@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { unit, colors, glass } from "../styles";
+import { unit, colors } from "../styles";
 import { Link } from "@reach/router";
 
-function Header(props: any) {
+export default function Header(props: any) {
   return (
     <HeaderContainer>
       <Link to="/">
@@ -31,5 +31,3 @@ const HeaderContainer = styled("header")({
   },
   zIndex: 2,
 });
-
-export default Header;

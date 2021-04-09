@@ -2,11 +2,8 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
-import dotenv from "dotenv";
 import { setInLS } from "../util";
 import { homeCoordVar } from "../cache";
-
-dotenv.config();
 
 declare global {
   interface Window {
@@ -182,11 +179,9 @@ const Map: React.FC<MapProps> = () => {
 
       const setHome = (evt: any) => {
         evt.stopPropagation();
-        console.log("집으로 설정");
         const { customOverlay, lat, long } = homeOverlay.current;
         setInLS("home", { lat, long });
         homeCoordVar({ lat, long });
-        console.log("설정 완료");
 
         customOverlay.setMap(null);
         homeOverlay.current = undefined;
@@ -223,7 +218,7 @@ const Map: React.FC<MapProps> = () => {
   /* 지도 초기화 */
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_MAP_KEY_DEV}&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=68580fd4a3b9dea6d62d4cdf781a1531&autoload=false`;
     document.head.appendChild(script);
 
     script.onload = () => {

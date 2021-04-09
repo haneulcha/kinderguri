@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import { unit, colors, glass } from "../styles";
+import { unit, colors } from "../styles";
 
 const NavButton = styled("div")({
   backgroundColor: colors.primary,

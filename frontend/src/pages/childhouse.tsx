@@ -69,7 +69,6 @@ const ChildHouse: React.FC<ChildHouseProps> = ({ children }) => {
   if (errorAll) return <p>ERROR</p>;
   if (!dataAll) return <p>Not found</p>;
 
-  console.log(keyword.length);
   return (
     <>
       <h2>어린이집</h2>

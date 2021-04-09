@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 
-import { unit, colors, glass } from "../styles";
+import { unit,glass } from "../styles";
 
 export default function ListItemContainer(props: any) {
   return <Container>{props.children}</Container>;
@@ -28,7 +28,6 @@ const Container = styled("section")({
   },
   "& h3, .tel": {
     textAlign: "center",
-    // marginBottom: unit * 0.8,
   },
   "& .type": {
     fontWeight: "bold",

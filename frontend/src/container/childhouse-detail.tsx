@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, RouteComponentProps } from "@reach/router";
 import { DetailContainer } from "../component";

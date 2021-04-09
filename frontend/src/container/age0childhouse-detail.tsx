@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Link, RouteComponentProps } from "@reach/router";
 import { DetailContainer } from "../component";
@@ -79,7 +79,6 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
       timeExt,
       updated,
     };
-    console.log(info);
   }
 
   return (
@@ -95,8 +94,8 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
       </a>
       <h3>정원</h3>
       <ul className="personnel">
-        <li>교직원수: {info.personnel.staff}</li>
-        <li>아동정원수: {info.personnel.kid}</li>
+        <li>교직원 수: {info.personnel.staff}</li>
+        <li>아동정원 수: {info.personnel.kid}</li>
       </ul>
       <h3>시간 연장 여부</h3>
       <p>{info.timeExt ? "O" : "X"}</p>

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { unit, colors, glass } from "../styles";
+import { unit, colors } from "../styles";
 
-function Footer(props: any) {
+export default function Footer(props: any) {
   return (
     <FooterContainer role="contentinfo">
       <address>
@@ -25,5 +25,3 @@ const FooterContainer = styled("footer")({
   color: colors.secondary,
   zIndex: 1,
 });
-
-export default Footer;

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 import { extractTypes } from "../util";
 
 interface DropDownProps {
@@ -9,10 +9,6 @@ interface DropDownProps {
 
 const DropDown: React.FC<DropDownProps> = ({ name, list, setOption }) => {
   const [value, setValue] = useState("");
-  // const handleSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   setOption(value);
-  // };
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setValue(event.target.value);
@@ -39,7 +35,6 @@ const DropDown: React.FC<DropDownProps> = ({ name, list, setOption }) => {
             ))}
         </select>
       </div>
-      {/* <input type="submit" value="확인" /> */}
     </form>
   );
 };

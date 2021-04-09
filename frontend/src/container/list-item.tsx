@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "React";
+import React from "React";
 import { useLocation, Link, RouteComponentProps } from "@reach/router";
 import { coordVar } from "../cache";
 import { ListItemContainer } from "../component";

@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import styled from "@emotion/styled";
 import { unit, colors, glass } from "../styles";
 
-function NavBar(props: any) {
+export default function NavBar(props: any) {
   const pathList = [
     { title: "0세 전용 어린이집", path: "age0childhouse" },
     { title: "어린이집", path: "childhouse" },
@@ -81,5 +81,3 @@ const NavButton = styled.div<MainContainerProps>(
       : `0 ${unit * 2}px ${unit * 2}px 0`,
   })
 );
-
-export default NavBar;

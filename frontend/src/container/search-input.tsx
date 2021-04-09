@@ -6,10 +6,6 @@ interface SearchInputProps {
 
 const SearchInput: React.FC<SearchInputProps> = ({ setKeyword }) => {
   const [value, setValue] = useState("");
-  // const handleSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   setOption(value);
-  // };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
