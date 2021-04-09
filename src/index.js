@@ -16,8 +16,6 @@ dotenv.config();
   const __dirname = path.resolve();
   const app = express();
 
-  app.use(express.static(path.join(__dirname, "dist")));
-
   const resolvers = {
     Query: {
       age0Kindergartens: async (_, __, { dataSources }) =>
@@ -52,6 +50,10 @@ dotenv.config();
   });
 
   server.applyMiddleware({ app });
+
+  app.use(express.static(path.join(__dirname, "dist")));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
 
   app.get("/*", function (req, res) {
     res.sendFile(path.join(__dirname, "dist", "index.html"));
