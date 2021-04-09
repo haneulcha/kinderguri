@@ -49,7 +49,7 @@ dotenv.config();
     }),
   });
 
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, path: "/graphql" });
 
   app.use(express.static(path.join(__dirname, "dist")));
   app.use(express.json());
