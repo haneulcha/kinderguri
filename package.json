@@ -9,7 +9,6 @@
     "start": "cd frontend && npm run dev",
     "start:lambda": "netlify-lambda serve src/lambda",
     "build": "run-p build:**",
-    "build:app": "cd frontend && npm run build",
     "build:lambda": "netlify-lambda build src/lambda"
   },
   "author": "",
