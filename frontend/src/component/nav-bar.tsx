@@ -36,7 +36,7 @@ type MainContainerProps = {
 };
 const Container = styled("nav")({
   position: "fixed",
-  top: unit * 10,
+  top: "7.5vh",
   left: -140,
   fontWeight: "bold",
   zIndex: 1,

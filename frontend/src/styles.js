@@ -56,14 +56,14 @@ export const GlobalStyles = () => {
           font-weight: 600;
         }
         h1 {
-          font-size: 32px;
+          font-size: 2rem;
           line-height: 1;
         }
         h2 {
-          font-size: 28px;
+          font-size: 1.8rem;
         }
         h3 {
-          font-size: 22px;
+          font-size: 1.3rem;
         }
         ul,
         li {
@@ -135,7 +135,7 @@ export const GlobalStyles = () => {
           border-radius: 50%;
           top: 35%;
           left: 39%;
-          margin-left: -6px;
+          margin-left: -5px;
           margin-top: -4px;
           background-color: ${colors.text};
         }

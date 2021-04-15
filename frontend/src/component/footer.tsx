@@ -21,7 +21,7 @@ const FooterContainer = styled("footer")({
   margin: unit * 1.5,
   padding: `${unit * 0.5}px ${unit * 1}px`,
   backgroundColor: colors.text,
-  fontSize: unit * 1.5,
+  fontSize: "0.8rem",
   color: colors.secondary,
   zIndex: 1,
 });

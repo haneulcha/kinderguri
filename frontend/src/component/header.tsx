@@ -18,7 +18,7 @@ const HeaderContainer = styled("header")({
   top: 0,
   left: 0,
   display: "flex",
-  alignItems: "baseline",
+  alignItems: "center",
   width: "100%",
   height: "6.5vh",
   padding: unit * 1.5,
@@ -26,8 +26,8 @@ const HeaderContainer = styled("header")({
   color: colors.text,
   h2: {
     display: "inline",
-    marginLeft: unit * 1,
-    fontSize: unit * 2,
+    marginLeft: "0.5rem",
+    fontSize: "1rem",
   },
   zIndex: 2,
 });

@@ -1,12 +1,14 @@
-import { ApolloServer } from "apollo-server-lambda";
+// import { ApolloServer } from "apollo-server-lambda";
+import { ApolloServer } from "apollo-server";
 import dotenv from "dotenv";
-
+import {
+  ageZeroKindergartenAPI,
+  childHouseAPI,
+  kindergartenAPI,
+  hospitalAtNightAPI,
+  barrierFreeTourAPI,
+} from "../datasource/index.js";
 import typeDefs from "./queries.js";
-import { ageZeroKindergartenAPI } from "../datasource/age-0-kindergarten.js";
-import { childHouseAPI } from "../datasource/childhouse.js";
-import { kindergartenAPI } from "../datasource/kindergarten.js";
-import { hospitalAtNightAPI } from "../datasource/hospital-at-night.js";
-import { barrierFreeTourAPI } from "../datasource/barrier-free-tour.js";
 
 dotenv.config();
 
@@ -43,11 +45,11 @@ const server = new ApolloServer({
   }),
 });
 
-// server.listen({ port: 2000 }).then(() => {
-//   console.log(`
-//       Server is running!
-//       Listening on port 2000
-//     `);
-// });
+// exports.handler = server.createHandler();
 
-exports.handler = server.createHandler();
+server.listen({ port: 4040 }).then(() => {
+  console.log(`
+      Server is running!
+      Listening on port 2000
+    `);
+});

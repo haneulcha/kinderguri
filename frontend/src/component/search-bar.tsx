@@ -9,7 +9,7 @@ export default function SearchBar(props: any) {
 
 const Container = styled("div")({
   textAlign: "center",
-  marginBottom: unit * 2,
+  marginBottom: "2vh",
   form: {
     display: "inline-block",
   },
@@ -18,7 +18,7 @@ const Container = styled("div")({
     fontSize: "90%",
     color: colors.text,
     minWidth: "6rem",
-    height: unit * 5,
+    height: "4.5vh",
     marginRight: unit * 1.5,
     padding: unit * 1,
     background: glass.glassBg,
@@ -34,7 +34,7 @@ const Container = styled("div")({
   },
   "& .select-wrapper::after": {
     content: '"▼"',
-    top: "0.65rem",
+    top: "33%",
     right: "25%",
     position: "absolute",
     fontSize: "0.8rem",

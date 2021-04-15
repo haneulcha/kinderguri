@@ -4,6 +4,8 @@ import { gql, useQuery } from "@apollo/client";
 import { RouteComponentProps } from "@reach/router";
 import { setInLS } from "../util";
 import { homeCoordVar } from "../cache";
+import dotenv from "dotenv";
+dotenv.config();
 
 declare global {
   interface Window {
@@ -218,7 +220,7 @@ const Map: React.FC<MapProps> = () => {
   /* 지도 초기화 */
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=68580fd4a3b9dea6d62d4cdf781a1531&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.MAP_DEV}&autoload=false`;
     document.head.appendChild(script);
 
     script.onload = () => {

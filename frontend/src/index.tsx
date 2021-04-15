@@ -12,7 +12,8 @@ import { GlobalStyles } from "./styles";
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
-  uri: "/.netlify/functions/graphql",
+  uri: "http://localhost:4040",
+  // uri: "/.netlify/functions/graphql",
   typeDefs,
 });
 
