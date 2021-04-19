@@ -14,6 +14,12 @@ export default function NavBar(props: any) {
 
   return !props.main ? (
     <Container>
+      <svg height="40px" id="menu-btn" className="open" viewBox="0 0 32 32">
+        <path
+          fill="#db2b39"
+          d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"
+        />
+      </svg>
       {pathList.map((item: any, i) => (
         <Link to={item.path} key={`nav-${i}`}>
           <NavButton>{item.title}</NavButton>
@@ -21,7 +27,7 @@ export default function NavBar(props: any) {
       ))}
     </Container>
   ) : (
-    <MainContainer>
+    <MainContainer className="main">
       {pathList.map((item: any, i) => (
         <Link to={item.path} key={`nav-${i}`}>
           <NavButton main>{item.title}</NavButton>
@@ -58,6 +64,10 @@ const MainContainer = styled("nav")({
   a: {
     width: "80%",
     textDecoration: "none",
+  },
+  "@media (max-width: 400px)": {
+    height: "7.5vh",
+    flexDirection: "row",
   },
 });
 

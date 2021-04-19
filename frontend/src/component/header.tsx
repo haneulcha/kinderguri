@@ -24,10 +24,9 @@ const HeaderContainer = styled("header")({
   padding: unit * 1.5,
   backgroundColor: colors.secondary,
   color: colors.text,
-  h2: {
-    display: "inline",
-    marginLeft: "0.5rem",
-    fontSize: "1rem",
-  },
+
   zIndex: 2,
+  "@media (max-width: 400px)": {
+    height: "7.5vh",
+  },
 });

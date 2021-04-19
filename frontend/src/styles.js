@@ -78,6 +78,11 @@ export const GlobalStyles = () => {
         select {
           font-family: "Spoqa Han Sans Neo";
         }
+        .header h2 {
+          display: 'inline',
+          margin-left: 0.5rem,
+          font-size: 1rem,
+        }
         .map {
           height: 100vh;
           width: 100vw;
@@ -140,6 +145,18 @@ export const GlobalStyles = () => {
           background-color: ${colors.text};
         }
 
+        @media (max-width: 400px) {
+          h1 {
+            font-size: 1rem;
+            line-height: 1;
+          }
+          h2 {
+            font-size: 0.75rem;
+          }
+          h3 {
+            font-size: 1.3rem;
+          }
+        }
       `}
     />
   );

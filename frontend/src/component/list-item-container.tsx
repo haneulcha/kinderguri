@@ -33,4 +33,24 @@ const Container = styled("section")({
     textAlign: "right",
     fontSize: "0.9rem",
   },
+  "@media (max-width: 400px)": {
+    minWidth: "8rem",
+    flexDirection: "row",
+    padding: unit * 1,
+    marginRight: unit * 1,
+    justifyContent: "center",
+    "& h3": {
+      fontSize: ".9rem",
+    },
+    "& .type, .tel": {
+      fontSize: "0.75rem",
+    },
+    "& .type": {
+      fontWeight: "unset",
+    },
+    "& .to-detail": {
+      textAlign: "right",
+      fontSize: "0.5rem",
+    },
+  },
 });

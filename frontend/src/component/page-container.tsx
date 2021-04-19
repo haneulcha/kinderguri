@@ -9,11 +9,11 @@ export default function PageContainer(props: any) {
 const Container = styled("main")({
   display: "flex",
   flexDirection: "column",
-  flexGrow: 1,
+  // flexGrow: 1,
   position: "absolute",
   right: 0,
-  minWidth: "24rem",
-  height: "93.5vh",
+  // minWidth: "24rem",
+  // height: "93.5vh",
   zIndex: 1,
   h2: {
     margin: `2vh 0`,
@@ -30,5 +30,15 @@ const Container = styled("main")({
     width: "80%",
     margin: "auto",
     fontSize: "0.9rem",
+  },
+  "@media (max-width: 400px)": {
+    "& h2": {
+      display: "none",
+    },
+    right: "unset",
+    bottom: 0,
+    height: "unset",
+    width: "unset",
+    minWidth: "unset",
   },
 });

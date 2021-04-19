@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { unit, colors, glass } from "../styles";
 
 export default function SearchBar(props: any) {
-  return <Container>{props.children}</Container>;
+  return <Container className="search">{props.children}</Container>;
 }
 
 const Container = styled("div")({
@@ -44,5 +44,13 @@ const Container = styled("div")({
     boxShadow: glass.glassShadow,
     backdropFilter: glass.backdropFilter,
     WebkitBackdropFilter: glass.backdropFilter,
+  },
+  "@media (max-width: 400px)": {
+    textAlign: "center",
+    margin: "6px 0",
+    "select, input": {
+      height: "unset",
+      fontSize: "unset",
+    },
   },
 });

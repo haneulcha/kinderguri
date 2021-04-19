@@ -24,4 +24,11 @@ const FooterContainer = styled("footer")({
   fontSize: "0.8rem",
   color: colors.secondary,
   zIndex: 1,
+  "@media (max-width: 400px)": {
+    // left: "unset",
+    bottom: "unset",
+    // right: 0,
+    fontSize: "0.5rem",
+    padding: "3px 6px",
+  },
 });

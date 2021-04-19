@@ -220,7 +220,7 @@ const Map: React.FC<MapProps> = () => {
   /* 지도 초기화 */
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.MAP_DEV}&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=&autoload=false`;
     document.head.appendChild(script);
 
     script.onload = () => {
