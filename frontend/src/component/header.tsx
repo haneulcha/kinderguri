@@ -28,5 +28,8 @@ const HeaderContainer = styled("header")({
   zIndex: 2,
   "@media (max-width: 400px)": {
     height: "7.5vh",
+    "& h2": {
+      marginLeft: "0.5rem",
+    },
   },
 });

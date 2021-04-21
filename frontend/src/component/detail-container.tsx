@@ -72,4 +72,19 @@ const Container = styled("section")({
     right: 15,
     top: 10,
   },
+  "@media (max-width: 400px)": {
+    maxWidth: "85%",
+    minWidth: "unset",
+    padding: "1rem",
+    "& h2": {
+      fontSize: "1.6rem",
+    },
+    "& .close": {
+      fontSize: "1.5rem",
+    },
+    "& .back": {
+      textAlign: "right",
+      textDecoration: "underline",
+    },
+  },
 });

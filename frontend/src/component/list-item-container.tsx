@@ -34,11 +34,13 @@ const Container = styled("section")({
     fontSize: "0.9rem",
   },
   "@media (max-width: 400px)": {
-    minWidth: "8rem",
+    minWidth: "9rem",
     flexDirection: "row",
     padding: unit * 1,
     marginRight: unit * 1,
-    justifyContent: "center",
+    "& > *": {
+      width: "100%",
+    },
     "& h3": {
       fontSize: ".9rem",
     },
@@ -46,6 +48,7 @@ const Container = styled("section")({
       fontSize: "0.75rem",
     },
     "& .type": {
+      textAlign: "left",
       fontWeight: "unset",
     },
     "& .to-detail": {
