@@ -1,5 +1,5 @@
-// import { ApolloServer } from "apollo-server-lambda";
-import { ApolloServer } from "apollo-server";
+import { ApolloServer } from "apollo-server-lambda";
+// import { ApolloServer } from "apollo-server";
 import dotenv from "dotenv";
 import {
   ageZeroKindergartenAPI,
@@ -45,11 +45,11 @@ const server = new ApolloServer({
   }),
 });
 
-// exports.handler = server.createHandler();
+exports.handler = server.createHandler();
 
-server.listen({ port: 4040 }).then(() => {
-  console.log(`
-      Server is running!
-      Listening on port 2000
-    `);
-});
+// server.listen({ port: 4040 }).then(() => {
+//   console.log(`
+//       Server is running!
+//       Listening on port 2000
+//     `);
+// });
