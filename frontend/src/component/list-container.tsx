@@ -10,7 +10,7 @@ const Container = styled("div")({
   flexDirection: "column",
   // flexGrow: 1,
   // width: "100%",
-  // height: "78.5vh",
+  height: "77.5vh",
   overflowY: "scroll",
   overflowScrolling: "touch",
   WebkitOverflowScrolling: "touch",
@@ -20,8 +20,7 @@ const Container = styled("div")({
   "@media (max-width: 400px)": {
     flexDirection: "row",
     overflowX: "scroll",
-    // overflowY: "unset",
     width: "100vw",
-    // height: "50vh",
+    height: "18vh",
   },
 });

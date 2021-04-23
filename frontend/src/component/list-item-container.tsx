@@ -35,6 +35,7 @@ const Container = styled("section")({
   },
   "@media (max-width: 400px)": {
     minWidth: "9rem",
+    maxHeight: "16vh",
     flexDirection: "row",
     padding: unit * 1,
     marginRight: unit * 1,
@@ -43,6 +44,9 @@ const Container = styled("section")({
     },
     "& h3": {
       fontSize: ".9rem",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
     },
     "& .type, .tel": {
       fontSize: "0.75rem",

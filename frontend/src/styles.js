@@ -123,8 +123,7 @@ export const GlobalStyles = () => {
         .home-marker {
           position: absolute;
           top: -27px;
-          left: -12px;
-          // margin-left: -115px;          
+          left: -12px;              
           border-radius: 50% 50% 50% 0;
           border: 4px solid ${colors.text};
           width: 30px;
@@ -155,6 +154,15 @@ export const GlobalStyles = () => {
           }
           h3 {
             font-size: 1.3rem;
+          }
+          .loading {
+            right: unset;
+            bottom: 0;            
+            width: 100vw;
+            min-width: unset;
+            height: 24vh;
+            margin: 0 auto;           
+            padding-top: 5vh;              
           }
         }
       `}

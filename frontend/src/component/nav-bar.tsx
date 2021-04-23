@@ -110,7 +110,6 @@ const Container = styled("nav")({
     "& .close": {
       visibility: "hidden",
     },
-
     "&:hover": {
       left: "unset",
     },
@@ -131,7 +130,7 @@ const MainContainer = styled("nav")({
     textDecoration: "none",
   },
   "@media (max-width: 400px)": {
-    height: "7.5vh",
+    height: "10vh",
     flexDirection: "row",
   },
 });
@@ -146,7 +145,6 @@ const NavButton = styled.div<MainContainerProps>(
     },
     "@media (max-width: 400px)": {
       marginBottom: unit * 0.5,
-      borderRadius: `${unit * 2}px 0 0 ${unit * 2}px`,
     },
   },
   (props) => ({
@@ -158,5 +156,14 @@ const NavButton = styled.div<MainContainerProps>(
     borderRadius: props.main
       ? `${unit * 2}px`
       : `0 ${unit * 2}px ${unit * 2}px 0`,
+    "@media (max-width: 400px)": {
+      fontSize: props.main ? "0.7rem" : "unset",
+      padding: props.main
+        ? unit * 1
+        : `${unit * 1}px ${unit * 1}px ${unit * 1}px ${unit * 2}px`,
+      borderRadius: props.main
+        ? `${unit * 2}px`
+        : `${unit * 1.5}px 0 0 ${unit * 1.5}px`,
+    },
   })
 );

@@ -12,8 +12,8 @@ const Container = styled("main")({
   // flexGrow: 1,
   position: "absolute",
   right: 0,
-  // minWidth: "24rem",
-  // height: "93.5vh",
+  minWidth: "24rem",
+  height: "93.5vh",
   zIndex: 1,
   h2: {
     margin: `2vh 0`,
@@ -40,5 +40,8 @@ const Container = styled("main")({
     height: "unset",
     width: "unset",
     minWidth: "unset",
+    "& .sethome-tip": {
+      display: "none",
+    },
   },
 });

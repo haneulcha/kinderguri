@@ -46,11 +46,18 @@ const Container = styled("div")({
     WebkitBackdropFilter: glass.backdropFilter,
   },
   "@media (max-width: 400px)": {
+    display: "flex",
+    justifyContent: "center",
     textAlign: "center",
     margin: "6px 0",
     "select, input": {
-      height: "unset",
-      fontSize: "unset",
+      height: "5vh",
+      fontSize: ".75rem",
+      padding: `${unit * 0.5}px ${unit * 1}px`,
+    },
+    "& .select-wrapper::after": {
+      top: "22%",
+      right: "19%",
     },
   },
 });
