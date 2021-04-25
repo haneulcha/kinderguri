@@ -25,9 +25,24 @@ interface HospitalDetailProps extends RouteComponentProps {
 const MedicalDetail: React.FC<HospitalDetailProps> = ({ hospitalname }) => {
   const { loading, data, error } = useQuery(READ_HOSPITAL_AT_NIGHT);
 
-  if (loading) return <p>Loading</p>;
-  if (error) return <p>ERROR</p>;
-  if (!data) return <p>Not found</p>;
+  if (loading)
+    return (
+      <DetailContainer>
+        <p>Loading</p>
+      </DetailContainer>
+    );
+  if (error)
+    return (
+      <DetailContainer>
+        <p>ERROR</p>
+      </DetailContainer>
+    );
+  if (!data)
+    return (
+      <DetailContainer>
+        <p>Not found</p>
+      </DetailContainer>
+    );
 
   let info = {
     name: "",

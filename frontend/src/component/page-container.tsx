@@ -38,8 +38,8 @@ const Container = styled("main")({
     right: "unset",
     bottom: 0,
     height: "unset",
-    width: "unset",
-    minWidth: "unset",
+    width: "100vw",
+    minWidth: "100vw",
     "& .sethome-tip": {
       display: "none",
     },

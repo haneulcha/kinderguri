@@ -33,9 +33,24 @@ const ChildHouseDetail: React.FC<ChildHouseDetailProps> = ({
 }) => {
   const { loading, data, error } = useQuery(READ_AGE0CHILDHOUSE);
 
-  if (loading) return <p>Loading</p>;
-  if (error) return <p>ERROR</p>;
-  if (!data) return <p>Not found</p>;
+  if (loading)
+    return (
+      <DetailContainer>
+        <p>Loading</p>
+      </DetailContainer>
+    );
+  if (error)
+    return (
+      <DetailContainer>
+        <p>ERROR</p>
+      </DetailContainer>
+    );
+  if (!data)
+    return (
+      <DetailContainer>
+        <p>Not found</p>
+      </DetailContainer>
+    );
 
   let info = {
     homepage: "",
