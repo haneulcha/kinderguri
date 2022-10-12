@@ -16,7 +16,7 @@
   "type": "module",
   "dependencies": {
     "apollo-datasource-rest": "^0.10.0",
-    "apollo-server": "^2.22.2",
+    "apollo-server": "^2.25.4",
     "apollo-server-lambda": "^2.22.2",
     "dotenv": "^8.2.0",
     "encoding": "^0.1.13",
